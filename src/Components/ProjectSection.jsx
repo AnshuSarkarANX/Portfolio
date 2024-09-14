@@ -7,7 +7,7 @@ const ProjectSection = () => {
       <h1 className="text-7xl underline">Projects</h1>
       <Projects
         image={
-          "src/assets/circle_small_desk.jpg"
+          "./src/assets/circle_small_desk.jpg"
         }
         title={"Circle"}
         description={"An image-based social media app"}
