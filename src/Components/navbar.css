@@ -1,0 +1,13 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.navbar p{
+    border: 3px dotted #D9D9D9;
+    padding: 0.250rem 0.400rem;
+}
+.navbar p:hover{
+    transition: ease-in 400ms;
+    border-color:#222121;
+}
