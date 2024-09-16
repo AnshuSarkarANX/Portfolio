@@ -16,7 +16,7 @@ const ProjectSection = () => {
         link={"https://addtocircle.vercel.app/"}
       />
       <Projects
-        image={"./src/assets/circle_small_desk.jpg"}
+        image={"./src/assets/metflix_small_desk.jpg"}
         title={"Metflix"}
         description={
           "A clone media streaming website for watching trailer of movie,webseries and documentries."
@@ -25,7 +25,7 @@ const ProjectSection = () => {
         link={"https://tadum.vercel.app/"}
       />
       <Projects
-        image={"./src/assets/circle_small_desk.jpg"}
+        image={"./src/assets/fruitphone_small_desk.jpg"}
         title={"FruitPhone"}
         description={"A replica website of IPhone 15 pro"}
         techstack={"ReactJs, GSAP, Three.js, Tailwindcss, Vite"}
