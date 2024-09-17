@@ -7,7 +7,7 @@ const ProjectSection = () => {
     <div className="projectSection h-screen">
       <h1 className="text-7xl underline">Projects</h1>
       <Projects
-        image={"src/assets/circle-small-desk.jpg"}
+        image={"/assets/circle-small-desk.jpg"}
         title={"Circle"}
         description={"An image-based social media app"}
         techstack={
@@ -16,7 +16,7 @@ const ProjectSection = () => {
         link={"https://addtocircle.vercel.app/"}
       />
       <Projects
-        image={"src/assets/metflix-small-desk.jpg"}
+        image={"/assets/metflix-small-desk.jpg"}
         title={"Metflix"}
         description={
           "A clone media streaming website for watching trailer of movie,webseries and documentries."
@@ -25,7 +25,7 @@ const ProjectSection = () => {
         link={"https://tadum.vercel.app/"}
       />
       <Projects
-        image={"src/assets/fruitphone-small-desk.jpg"}
+        image={"/assets/fruitphone-small-desk.jpg"}
         title={"FruitPhone"}
         description={"A replica website of IPhone 15 pro"}
         techstack={"ReactJs, GSAP, Three.js, Tailwindcss, Vite"}
