@@ -5,7 +5,9 @@
    font-family: "Josefin Sans", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   color-scheme: light dark;
   color: #222121;
   background-color:#D9D9D9;

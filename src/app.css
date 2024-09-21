@@ -1,8 +1,14 @@
-#app {
-  max-width: max(1280px,85vw);
+.mainSection {
+  max-width: max(1280px,90vw);
   margin: 0 auto;
   padding: 2rem;
 }
 .role{
   margin: 40vh 0 20vh;
+}
+@media (max-width:759px) {
+ #app{padding: 1em;}
+ .role{
+  margin:30vh 0 20vh;
+};
 }

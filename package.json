@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gsap": "^3.12.5",
     "preact": "^10.23.1"
   },
   "devDependencies": {
