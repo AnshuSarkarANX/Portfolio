@@ -16,7 +16,7 @@ const ProjectSection = () => {
     const img = slide.querySelector("img");
 
     gsap.to(img, {
-      scale: 0.9,
+      scale: 1,
       top: "0%",
       duration: 2,
       ease: "power3.inOut",
@@ -72,9 +72,9 @@ const ProjectSection = () => {
       // ScrollTrigger for each slide
       ScrollTrigger.create({
         trigger: slides,
-        pin:'.slide',
+        pin:true,
         start: "top 20%",
-        end: "bottom 95%",
+        end: "+=95%",
         onEnter: () => showSlide(slide),
         onLeaveBack: () => hideSlide(slide),
         markers: true, // Optional: Remove markers once confirmed working
