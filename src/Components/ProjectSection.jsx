@@ -9,6 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = () => {
   const [isAnimating, setIsAnimating] = useState(false);
+     const [deviceType, setDeviceType] = useState("desktop");
+     const detectDevice = () => {
+       if (window.innerWidth <= 768) {
+         setDeviceType("mobile");
+       } else {
+         setDeviceType("desktop");
+       }
+     };
 
   const showSlide = (slide) => {
     if (isAnimating) return;
@@ -61,6 +69,8 @@ const ProjectSection = () => {
   };
 
   useEffect(() => {
+     detectDevice();
+     window.addEventListener("resize", detectDevice); 
     // Use gsap.utils.toArray to handle the slides
     const slides = gsap.utils.toArray(".slide");
 
@@ -73,7 +83,7 @@ const ProjectSection = () => {
       ScrollTrigger.create({
         trigger: slides,
         pin:true,
-        start: "top 20%",
+        start: "top center",
         end: "+=95%",
         onEnter: () => showSlide(slide),
         onLeaveBack: () => hideSlide(slide),
@@ -88,23 +98,40 @@ const ProjectSection = () => {
   }, []);
 
   return (
-    < div className="projectSection">
-
-        <div className="slide slide-text" id="slide-1">
-          <div className="slide-text bg-inherit">
-            <h1 className="text-7xl text-center">Projects</h1>
-          </div>
-        </div>
-        <div className="slide" id="slide-2">
-          <img src="./assets/circle-small-desk.jpg" alt="Slide 1" />
-        </div>
-        <div className="slide" id="slide-3">
-          <img src="./assets/metflix-small-desk.jpg" alt="Slide 2" />
-        </div>
-        <div className="slide" id="slide-4">
-          <img src="./assets/fruitphone-small-desk.jpg" alt="Slide 3" />
-        </div>
-    
+    <div className="projectSection">
+      <div className="slide slide-text" id="slide-1">
+          <h1 className="text-7xl text-center">Projects</h1>
+      </div>
+      <div className="slide" id="slide-2">
+        <img
+          src={
+            deviceType === "mobile"
+              ? "/assets/circle-large-mob.jpg"
+              : "/assets/circle-small-desk.jpg"
+          }
+          alt="Slide 1"
+        />
+      </div>
+      <div className="slide" id="slide-3">
+        <img
+          src={
+            deviceType === "mobile"
+              ? "/assets/metflix-large-mob.jpg"
+              : "/assets/metflix-small-desk.jpg"
+          }
+          alt="Slide 2"
+        />
+      </div>
+      <div className="slide" id="slide-4">
+        <img
+          src={
+            deviceType === "mobile"
+              ? "/assets/fruitphone-large-mob.jpg"
+              : "/assets/fruitphone-small-desk.jpg"
+          }
+          alt="Slide 3"
+        />
+      </div>
     </div>
   );
 };

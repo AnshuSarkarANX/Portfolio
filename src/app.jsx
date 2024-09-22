@@ -9,10 +9,10 @@ export function App() {
     <div className="app relative">
       <div className="mainSection h-screen text-center">
         <div className="Namebar">
-          <p className="Name text-4xl font-bold drop-shadow-sm">ANSHU SARKAR</p>
+          <p className="Name font-bold drop-shadow-sm">ANSHU SARKAR</p>
         </div>
         <div className="rolebox">
-          <p className="role text-9xl font-bold drop-shadow-lg">
+          <p className="role font-bold drop-shadow-lg ">
             Frontend Developer
           </p>
         </div>

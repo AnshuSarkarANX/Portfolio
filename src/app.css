@@ -3,12 +3,17 @@
   margin: 0 auto;
   padding: 2rem;
 }
+.Namebar{
+  font-size: clamp(1rem,10vmin,2rem);
+}
 .role{
   margin: 40vh 0 20vh;
+  font-size: clamp(4rem,15vmin,8rem)
 }
 @media (max-width:759px) {
- #app{padding: 1em;}
+ .mainSection{padding: 1em;}
  .role{
   margin:30vh 0 20vh;
+  font-size: clamp(1.2rem,20vmin,4.5rem)
 };
 }

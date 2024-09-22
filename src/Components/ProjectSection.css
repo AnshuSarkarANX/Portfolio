@@ -1,9 +1,14 @@
 
     .projectSection{
         position: relative;
-        height: 100vh;
+        height: 100vh;       
         overflow: hidden;
 
+    }
+    .slide-text{
+      top: 50%;
+      left: 50%;
+      transform: (-50%,-50%);
     }
 
     .slide{
