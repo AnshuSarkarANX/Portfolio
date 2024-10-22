@@ -1,137 +1,86 @@
-import React, { useEffect, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, Scrollbar, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "./ProjectSection.css";
 import Projects from "./Projects.jsx";
 
-// Register ScrollTrigger with GSAP
-gsap.registerPlugin(ScrollTrigger);
-
+const ProjectsArray = [
+  {
+    image: "/assets/circle-small-desk.jpg",
+    title: "Circle",
+    techStack:
+      "TypeScript, React, Tailwindcss, shadcn, TanStack query, Appwrite",
+    description:
+      "Cricle is an image-based social media app that offers users a responsive and interactive interface, allowing them to like, save, search, create, and edit posts. The app uses Appwrite for user authentication, authorization, database management, and storage, ensuring secure and efficient data handling. With these modern technologies, Cricle delivers a smooth user experience for sharing and discovering images in a social media environment.",
+    link: "https://addtocircle.vercel.app/",
+  },
+  {
+    image: "/assets/fruitphone-small-desk.jpg",
+    title: "FruitPhone",
+    techStack: "ReactJs, GSAP, Three.js, Tailwindcss, Vite",
+    description:
+      "FruitPhone is a replica website of the iPhone 15 Pro with an interactive and responsive user interface. It showcases a 3D model of the phone using Three.js, allowing users to interact with the model for an immersive experience. The website is styled with Tailwind CSS, ensuring a modern and sleek design. FruitPhone effectively highlights the features and design of the iPhone 15 Pro through a visually engaging platform.",
+    link: "https://fruitphone.vercel.app/",
+  },
+  {
+    image: "/assets/metflix-small-desk.jpg",
+    title: "Metflix",
+    techStack: "ReactJs, FireBase, TMDB API",
+    description:
+      "Metflix is a Netflix clone developed using ReactJS, providing an interactive and responsive user interface. Trailer videos are fetched and played in real-time from YouTube. User authentication is implemented using Firebase, ensuring secure access and personalized user experiences. Metflix replicates key features of Netflix, offering a smooth and dynamic platform for discovering and streaming media content.",
+    link: "https://tadum.vercel.app/",
+  },
+];
+  
 const ProjectSection = () => {
-  const [isAnimating, setIsAnimating] = useState(false);
      const [deviceType, setDeviceType] = useState("desktop");
+     const progressCircle = useRef(null);
+     const progressContent = useRef(null);
+     const onAutoplayTimeLeft = (s, time, progress) => {
+       progressCircle.current.style.setProperty("--progress", 1 - progress);
+       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+     };
      const detectDevice = () => {
        if (window.innerWidth <= 768) {
-         setDeviceType("mobile");
+         setDeviceType("mobile");     
        } else {
          setDeviceType("desktop");
        }
      };
 
-  const showSlide = (slide) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    const img = slide.querySelector("img");
-
-    gsap.to(img, {
-      scale: 1,
-      top: "0%",
-      duration: 2,
-      ease: "power3.inOut",
-    });
-
-    gsap.to(slide, {
-      clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
-      duration: 2,
-      ease: "power4.inOut",
-      onComplete: () => {
-        setIsAnimating(false);
-      },
-    });
-  };
-
-  const hideSlide = (slide) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    const img = slide.querySelector("img");
-
-    gsap.to(slide, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      duration: 1,
-      ease: "power3.inOut",
-    });
-
-    gsap.to(img, {
-      scale: 1.5,
-      top: "4em",
-      duration: 2,
-      ease: "power3.inOut",
-    });
-
-    gsap.to(slide, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      duration: 1,
-      ease: "power4.inOut",
-      onComplete: () => {
-        setIsAnimating(false);
-      },
-    });
-  };
-
-  useEffect(() => {
-     detectDevice();
-     window.addEventListener("resize", detectDevice); 
-    // Use gsap.utils.toArray to handle the slides
-    const slides = gsap.utils.toArray(".slide");
-
-    slides.forEach((slide) => {
-      const img = slide.querySelector("img");
-
-      gsap.set(img, { scale: 1, top: "4em" });
-
-      // ScrollTrigger for each slide
-      ScrollTrigger.create({
-        trigger: slides,
-        pin:true,
-        start: "top center",
-        end: "+=95%",
-        onEnter: () => showSlide(slide),
-        onLeaveBack: () => hideSlide(slide),
-        markers: true, // Optional: Remove markers once confirmed working
-      });
-    });
-
-    // Cleanup on unmount
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
   return (
     <div className="projectSection">
-      <div className="slide slide-text" id="slide-1">
-          <h1 className="text-7xl text-center">Projects</h1>
-      </div>
-      <div className="slide" id="slide-2">
-        <img
-          src={
-            deviceType === "mobile"
-              ? "/assets/circle-large-mob.jpg"
-              : "/assets/circle-small-desk.jpg"
-          }
-          alt="Slide 1"
-        />
-      </div>
-      <div className="slide" id="slide-3">
-        <img
-          src={
-            deviceType === "mobile"
-              ? "/assets/metflix-large-mob.jpg"
-              : "/assets/metflix-small-desk.jpg"
-          }
-          alt="Slide 2"
-        />
-      </div>
-      <div className="slide" id="slide-4">
-        <img
-          src={
-            deviceType === "mobile"
-              ? "/assets/fruitphone-large-mob.jpg"
-              : "/assets/fruitphone-small-desk.jpg"
-          }
-          alt="Slide 3"
-        />
-      </div>
+    <h1 className=" text-center text-4xl font-semibold underline my-10"> Projects </h1>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        className="mySwiper"
+      >
+        {ProjectsArray.map((Project) => (
+          <SwiperSlide>
+            <Projects Project={Project} />
+          </SwiperSlide>
+        ))}
+        <div className="autoplay-progress" slot="container-end">
+          <svg viewBox="0 0 48 48" ref={progressCircle}>
+            <circle cx="24" cy="24" r="20"></circle>
+          </svg>
+          <span ref={progressContent}></span>
+        </div>
+      </Swiper>
     </div>
   );
 };

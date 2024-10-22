@@ -20,6 +20,7 @@ export function App() {
       </div>
 
       <ProjectSection />
+      <WorkEx/>
      
     </div>
   );

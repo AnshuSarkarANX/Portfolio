@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "gsap": "^3.12.5",
-    "preact": "^10.23.1"
+    "preact": "^10.23.1",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.9.0",
