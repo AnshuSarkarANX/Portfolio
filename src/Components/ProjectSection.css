@@ -9,10 +9,8 @@
         height: 100%;
         object-fit: cover;
     }
-    .autoplay-progress {
+.autoplay-progress {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
   z-index: 10;
   width: 48px;
   height: 48px;
@@ -26,16 +24,30 @@
 .autoplay-progress svg {
   --progress: 0;
   position: absolute;
-  left: 0;
-  top: 0px;
+  left: 0px;
+  bottom: 55%;
   z-index: 10;
   width: 100%;
   height: 100%;
   stroke-width: 4px;
-  stroke:#213547;
+  stroke:#000;
   fill: none;
   stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
   stroke-dasharray: 125.6;
   transform: rotate(-90deg);
+}
+.slider-nav{
+  display:flex;
+  justify-content:center;
+  gap:clamp(2rem,10vw,7rem);
+}
+.slider-nav img{
+  height:3.5vh;
+}
+@media (max-width:700px){
+  .autoplay-progress{
+    left:50%;
+    transform:translate(-0%,-50%);
+  }
 }
     

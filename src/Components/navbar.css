@@ -5,7 +5,7 @@
 }
 .navbar p{
     border: 3px dotted #D9D9D9;
-    font-size: clamp(1rem,4vmin,3rem);
+    font-size: clamp(1rem,4.5vmin,3rem);
     padding: 0.250rem 0.400rem;
 }
 .navbar p:hover{

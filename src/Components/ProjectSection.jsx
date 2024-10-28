@@ -1,10 +1,10 @@
 import { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination, Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "./ProjectSection.css";
+import "./projectSection.css";
 import Projects from "./Projects.jsx";
 
 const ProjectsArray = [
@@ -14,7 +14,7 @@ const ProjectsArray = [
     techStack:
       "TypeScript, React, Tailwindcss, shadcn, TanStack query, Appwrite",
     description:
-      "Cricle is an image-based social media app that offers users a responsive and interactive interface, allowing them to like, save, search, create, and edit posts. The app uses Appwrite for user authentication, authorization, database management, and storage, ensuring secure and efficient data handling. With these modern technologies, Cricle delivers a smooth user experience for sharing and discovering images in a social media environment.",
+      "Circle is an image-based social media app that offers users a responsive and interactive interface, allowing them to like, save, search, create, and edit posts. The app uses Appwrite for user authentication, authorization, database management, and storage, ensuring secure and efficient data handling. With these modern technologies, Cricle delivers a smooth user experience for sharing and discovering images in a social media environment.",
     link: "https://addtocircle.vercel.app/",
   },
   {
@@ -53,7 +53,10 @@ const ProjectSection = () => {
 
   return (
     <div className="projectSection">
-    <h1 className=" text-center text-4xl font-semibold underline my-10"> Projects </h1>
+      <h1 className=" text-center text-4xl  sm:text-7xl font-semibold underline my-10">
+        {" "}
+        Projects{" "}
+      </h1>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -61,10 +64,11 @@ const ProjectSection = () => {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
+        rewind={true}
+        navigation={{
+          nextEl: " .arrow-right",
+          prevEl: ".arrow-left",
         }}
-        navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
@@ -74,11 +78,22 @@ const ProjectSection = () => {
             <Projects Project={Project} />
           </SwiperSlide>
         ))}
-        <div className="autoplay-progress" slot="container-end">
-          <svg viewBox="0 0 48 48" ref={progressCircle}>
-            <circle cx="24" cy="24" r="20"></circle>
-          </svg>
-          <span ref={progressContent}></span>
+
+        <div className="slider-nav">
+          <img
+            className=" arrow-left w-fit h-fit rotate-180"
+            src="/assets/arrow-right.png"
+          />
+          <div className="autoplay-progress" slot="container-end">
+            <svg viewBox="0 0 48 48" ref={progressCircle}>
+              <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span ref={progressContent}></span>
+          </div>
+          <img
+            className=" arrow-right w-fit h-fit"
+            src="/assets/arrow-right.png"
+          />
         </div>
       </Swiper>
     </div>

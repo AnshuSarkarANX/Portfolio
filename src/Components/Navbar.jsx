@@ -1,7 +1,7 @@
 import './navbar.css'
 const Navbar = () => {
   return (
-    <div className="navbar sticky ">
+    <div className="navbar">
       <p>About</p>
       <p>Projects</p>
       <p>Resume</p>

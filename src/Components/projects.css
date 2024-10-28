@@ -1,0 +1,22 @@
+.projectImg{
+    width:500px;
+}
+.projectBox{
+    display:flex;
+    gap:3vw;
+}
+.projectDetails{
+    width:45vw;
+}
+@media (max-width:700px) {
+    .projectBox{
+        flex-direction:column;
+        gap:4vh;
+    }
+    .projectImg{
+    width:550px;
+}
+.projectDetails{
+    width:fill;
+}
+}
