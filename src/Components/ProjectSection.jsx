@@ -61,10 +61,10 @@ const ProjectSection = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 5000,
+          delay: 3500,
           disableOnInteraction: false,
         }}
-        rewind={true}
+        loop={true}
         navigation={{
           nextEl: " .arrow-right",
           prevEl: ".arrow-left",
