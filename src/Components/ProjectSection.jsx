@@ -54,14 +54,13 @@ const ProjectSection = () => {
   return (
     <div className="projectSection">
       <h1 className=" text-center text-4xl  sm:text-7xl font-semibold underline my-10">
-        {" "}
-        Projects{" "}
+        Projects
       </h1>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 3500,
+          delay: 6000,
           disableOnInteraction: false,
         }}
         loop={true}

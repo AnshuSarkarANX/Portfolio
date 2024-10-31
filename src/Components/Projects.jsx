@@ -15,21 +15,27 @@ const Projects = ({Project}) => {
           }, [window.innerWidth])
           
   return (
-    <div className="projectBox my-10 mx-12">
+    <div className="projectBox md:my-10 mx-12">
       <div className=" border-double border-8 border-blackish p-0.5">
         <img src={Project.image} className=" projectImg w-full h-full" />
       </div>
 
       <div className="projectDetails">
-        <h2 className=" inline-block font-bold text-5xl text-left">
-          {Project.title}
-        </h2>
-        <p className=" text-blackish opacity-90">{Project.techStack}</p>
-        <p>{Project.description}</p>
-        <a className=" text-xl text-blue-600 hover:underline" href={Project.link}
-         target="_blank">
-          Visit
-        </a>
+        <div className=" flex  justify-between">
+          <h2 className=" inline-block font-bold text-5xl text-left mb-5">
+            {Project.title}
+          </h2>
+          <a
+            className=" link-text text-2xl font-semibold text-blue-600 hover:underline md:mr-14"
+            href={Project.link}
+            target="_blank"
+          >
+            Visit
+          </a>
+        </div>
+
+        <p className=" text-blackish opacity-95">{Project.techStack}</p>
+        <p className=" text-blackish opacity-80">{Project.description}</p>
       </div>
     </div>
   );
