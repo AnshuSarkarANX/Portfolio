@@ -19,21 +19,19 @@ const Projects = ({Project}) => {
       <div className=" border-double border-8 border-blackish p-0.5">
         <img src={Project.image} className=" projectImg w-full h-full" />
       </div>
-
       <div className="projectDetails">
-        <div className=" flex  justify-between">
-          <h2 className=" inline-block font-bold text-5xl text-left mb-5">
+        <div className="flex  justify-between">
+          <h2 className="inline-block font-bold text-5xl text-left mb-5">
             {Project.title}
           </h2>
           <a
-            className=" link-text text-2xl font-semibold text-blue-600 hover:underline md:mr-14"
+            className="link-text text-2xl font-semibold text-blue-600 hover:underline md:mr-14"
             href={Project.link}
             target="_blank"
           >
-            Visit
+           Visit
           </a>
         </div>
-
         <p className=" text-blackish opacity-95">{Project.techStack}</p>
         <p className=" text-blackish opacity-80">{Project.description}</p>
       </div>

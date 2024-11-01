@@ -1,7 +1,8 @@
 .projectSection{
         position: relative;
-        height: 100vh;       
+        height: fit;       
         overflow: hidden;
+        margin:10vh 0;
     }
 .autoplay-progress {
   height: 3.5vh;
@@ -28,7 +29,7 @@
 }
 @media (max-width:820px){
   .projectSection h1{
-    font-size:clamp(30px,20vw,40px)
+    font-size:clamp(30px,20vw,40px);
   }
 }
     

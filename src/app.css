@@ -6,9 +6,9 @@
 .Namebar{
   font-size: clamp(1rem,10vmin,2rem);
 }
-.role{
-  margin: 40vh 0 20vh;
-  font-size: clamp(4rem,15vmin,8rem)
+.rolebox{
+  margin: 35vh 0 15vh;
+  font-size: clamp(3rem,15vmin,8rem)
 }
 @media (max-width:820px) {
  .mainSection{padding: 1rem;}
