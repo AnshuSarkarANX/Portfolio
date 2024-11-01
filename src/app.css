@@ -10,7 +10,7 @@
   margin: 40vh 0 20vh;
   font-size: clamp(4rem,15vmin,8rem)
 }
-@media (max-width:759px) {
+@media (max-width:820px) {
  .mainSection{padding: 1rem;}
  .role{
   margin:30vh 0 20vh;

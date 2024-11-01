@@ -2,7 +2,6 @@ import Navbar from './Components/Navbar';
 import WorkEx from './Components/WorkEx';
 import ProjectSection from './Components/ProjectSection';
 import './app.css';
-
 export function App() {
 
   return (
@@ -18,10 +17,7 @@ export function App() {
         </div>
         <Navbar />
       </div>
-
       <ProjectSection />
-      <WorkEx/>
-     
     </div>
   );
 }

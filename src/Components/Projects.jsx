@@ -15,7 +15,7 @@ const Projects = ({Project}) => {
           }, [window.innerWidth])
           
   return (
-    <div className="projectBox md:my-10 mx-12">
+    <div className="projectBox md:my-10 mx-[10vmin] ">
       <div className=" border-double border-8 border-blackish p-0.5">
         <img src={Project.image} className=" projectImg w-full h-full" />
       </div>
