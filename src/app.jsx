@@ -25,13 +25,13 @@ export function App() {
           <Navbar />
         </div>
         <ProjectSection />
-        <div className=" flex flex-col md:flex-row md:gap-1 gap-[5vh] justify-around my-32">
+        <div className=" relative flex flex-col md:flex-row md:gap-1 gap-[5vh] justify-around my-32">
           <ResumeSection />
           <div className="  text-center">
             <h1 className=" text-4xl  md:text-5xl font-semibold underline my-10 ">
               Work Experience
             </h1>
-            <div className=" flex flex-col items-center mx-auto text-left ">
+            <div className=" relative flex flex-col items-center mx-auto text-left ">
               <WorkEx
                 title="Frontend Developer - WEBAXD"
                 duration="June - July, 2024"
