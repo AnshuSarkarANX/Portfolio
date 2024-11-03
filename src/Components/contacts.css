@@ -1,0 +1,10 @@
+.navButton img{
+    height:clamp(20px,10vmin,40px);
+    opacity:70%
+}
+.navButton img:hover{
+    transition:200ms;
+    transform:scale(1.2);
+    filter:drop-shadow(0px 0px 10px white);
+    opacity:100%;
+ }

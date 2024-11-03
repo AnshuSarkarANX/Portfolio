@@ -4,12 +4,12 @@
     justify-content: space-evenly;
     position:relative;
 }
-.navbar p{
-    border: 3px dotted #D9D9D9;
+.navbar button {
+    border: 3px dotted transparent;
     font-size: clamp(1rem,4.5vmin,3rem);
     padding: 0.250rem 0.400rem;
 }
-.navbar p:hover{
+.navbar button:hover {
     transition: ease-in 400ms;
     border-color:#222121;
 }
