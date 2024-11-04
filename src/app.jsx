@@ -69,18 +69,18 @@ export function App() {
                 title="Frontend Developer Intern - Pearl Thoughts"
                 duration="Oct - Nov, 2024"
                 points={[
-                  "Developed a Javascript algorithm to improve the loading speed by 90%",
-                  "Designed and implemented new features for better user experience",
-                  "Successfully delivered multiple projects",
+                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
+                  "Implemented full CRUD functionality for appointments using REST APIs.",
+                  "Enhanced user experience with a responsive and seamless interface.",
                 ]}
               />
               <WorkEx
                 title="Frontend Developer - WEBAXD"
                 duration="May - Aug, 2024"
                 points={[
-                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
-                  "Implemented full CRUD functionality for appointments using REST APIs.",
-                  "Enhanced user experience with a responsive and seamless interface.",
+                  "Developed a Javascript algorithm to improve the loading speed by 90%",
+                  "Designed and implemented new features for better user experience",
+                  "Successfully delivered multiple projects",
                 ]}
               />
             </div>
