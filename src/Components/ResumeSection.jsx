@@ -15,7 +15,10 @@ const ResumeSection = () => {
         Resume
       </h1>
       <FullScreenViewer img="/ResumeLow.jpg" hiResImg="/Resume.jpg" />
-      <a href="https://drive.google.com/file/d/15V6TpSG069W4nlxTzlZyQrwfZQAKVm2I/view?usp=sharing"  target="_blank">
+      <a
+        href="https://drive.google.com/file/d/1OLZ4fbczkBDaV2ZR-Co98w9mVbPXt8dd/view?usp=sharing"
+        target="_blank"
+      >
         <button
           className={`my-[5vmin] border-dotted border-[#222121]  p-1 border-[3px] hover:border-solid transition
       ${clicked ? "bg-black bg-opacity-20" : ""}`}
