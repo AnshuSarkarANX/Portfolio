@@ -11,7 +11,7 @@ const Contacts = () => {
           </a>
         </button>
         <button className=" navButton">
-          <a href="https://www.linkedin.com/in/anshu-sarkar/" target="_blank">
+          <a href="https://www.linkedin.com/in/anshusarkar/" target="_blank">
             <img src="/assets/linkedin-icon.png" />
           </a>
         </button>
