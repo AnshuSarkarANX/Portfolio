@@ -64,14 +64,23 @@ export function App() {
             <h1 className="text-4xl md:text-5xl font-semibold underline my-10">
               Work Experience
             </h1>
-            <div className="relative flex flex-col items-center mx-auto text-left">
+            <div className="relative flex flex-col justify-between items-center mx-auto text-left">
               <WorkEx
-                title="Frontend Developer - WEBAXD"
-                duration="June - July, 2024"
+                title="Frontend Developer Intern - Pearl Thoughts"
+                duration="Oct - Nov, 2024"
                 points={[
                   "Developed a Javascript algorithm to improve the loading speed by 90%",
                   "Designed and implemented new features for better user experience",
                   "Successfully delivered multiple projects",
+                ]}
+              />
+              <WorkEx
+                title="Frontend Developer - WEBAXD"
+                duration="May - Aug, 2024"
+                points={[
+                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
+                  "Implemented full CRUD functionality for appointments using REST APIs.",
+                  "Enhanced user experience with a responsive and seamless interface.",
                 ]}
               />
             </div>
@@ -79,7 +88,7 @@ export function App() {
         </div>
 
         <div ref={contactRef} className="section">
-          <Contacts/>
+          <Contacts />
         </div>
       </div>
     </>
