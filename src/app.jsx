@@ -5,6 +5,7 @@ import "./app.css";
 import "./Components/navbar.css";
 import ResumeSection from "./Components/ResumeSection";
 import Contacts from "./Components/Contacts";
+import { Analytics } from "@vercel/analytics/react";
 
 export function App() {
   const resumeRef = useRef(null);
@@ -46,7 +47,7 @@ export function App() {
             </button>
           </div>
         </div>
-
+        <Analytics />
         <div ref={aboutRef} className="section">
           {/* About Section Content */}
         </div>
