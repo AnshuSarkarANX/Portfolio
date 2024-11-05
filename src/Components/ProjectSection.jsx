@@ -28,7 +28,7 @@ const ProjectsArray = [
   {
     image: "/assets/metflix-small-desk.jpg",
     title: "Metflix",
-    techStack: "ReactJs, FireBase, TMDB API",
+    techStack: "ReactJs, FireBase, Redux, TMDB API",
     description:
       "Metflix is a Netflix clone developed using ReactJS, providing an interactive and responsive user interface. Trailer videos are fetched and played in real-time from YouTube. User authentication is implemented using Firebase, ensuring secure access and personalized user experiences. Metflix replicates key features of Netflix, offering a smooth and dynamic platform for discovering and streaming media content.",
     link: "https://tadum.vercel.app/",
