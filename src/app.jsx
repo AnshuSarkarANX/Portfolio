@@ -67,7 +67,7 @@ export function App() {
             </h1>
             <div className="relative flex flex-col justify-between items-center mx-auto text-left">
               <WorkEx
-                title="Frontend Developer Intern - Pearl Thoughts"
+                title="Frontend Developer - Pearl Thoughts"
                 duration="Oct - Nov, 2024"
                 points={[
                   "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
