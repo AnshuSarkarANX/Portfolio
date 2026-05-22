@@ -35,7 +35,7 @@ export function App() {
             <p className="Name font-bold drop-shadow-sm">ANSHU SARKAR</p>
           </div>
           <div className="rolebox">
-            <p className="role font-bold drop-shadow-lg">Frontend Developer</p>
+            <p className="role font-bold font-header_bodoni drop-shadow-lg">Frontend Developer</p>
           </div>
 
           <div className="navbar">
