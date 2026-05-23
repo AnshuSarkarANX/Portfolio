@@ -4,12 +4,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        header_bodoni: ["Bodoni Moda", "serif"],
-        body_hanken: ["Hanken Grotesk", "sans-serif"],
-        label_syne: ["Syne", "sans-serif"],
+        header: ["Playfair Display", "serif"],
+        body: ["Hanken Grotesk", "sans-serif"],
+        jetbrains: ["JetBrains Mono", "monospace"],
       },
       colors: {
         blackish: "#222121",
+        backGround: "#D9D9D9",
+        secondary: "#5e5e5e",
       },
     },
   },

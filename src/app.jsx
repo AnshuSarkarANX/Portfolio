@@ -20,32 +20,56 @@ export function App() {
   };
 
   return (
-    <>
-      <div className="app relative">
-        <div className="white">
+    <div className="">
+      {/*Desktop Side bar */}
+      <div className="hidden static lg:fixed lg:block top-0 left-0   z-10 bg-backGround h-screen w-[50px] border-2 border-red-500 border-solid transition-all duration-300 ease-in-out">
+        abc
+      </div>
+      <div
+        className="bg-[linear-gradient(to_right,#5e5e5e1a_2px,transparent_1px),linear-gradient(to_bottom,#5e5e5e1a_2px,transparent_1px)]
+    bg-[size:40px_40px]"
+      >
+        {/* <div className="white">
           <div className="squares">
             {Array.from({ length: 10 }).map((_, index) => (
               <div key={index} className="square"></div>
             ))}
           </div>
-        </div>
+        </div>*/}
 
-        <div className="mainSection text-center">
-          <div className="Namebar">
-            <p className="Name font-bold drop-shadow-sm">ANSHU SARKAR</p>
-          </div>
-          <div className="rolebox">
-            <p className="role font-bold font-header_bodoni drop-shadow-lg">Frontend Developer</p>
+        <div className="mainSection text-center h-screen">
+          <div className="grid sm:grid-cols-10 h-full bg-[url('./assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
+            <div className="sm:col-span-6 flex flex-col justify-around">
+              <div className="bg-backGround text-secondary text-opacity-50 border-solid border border-secondary border-opacity-30 w-fit px-[10px]">
+                SYS.INIT // 2024
+              </div>
+              <div className="w-fit">
+                <p className="name">
+                  ANSHU <br />
+                  SARKAR
+                </p>
+
+                <p className="font-jetbrains  opacity-70 text-center">
+                  ENGINEERING DIGITAL INTERFACES
+                </p>
+
+                <p className="role">
+                  Frontend <br />
+                  Developer
+                </p>
+              </div>
+            </div>
+            <div className="sm:col-span-4 border-l border-solid border-black"></div>
           </div>
 
-          <div className="navbar">
+          {/*<div className="navbar">
             <button onClick={() => handleNavClick(aboutRef)}>About</button>
             <button onClick={() => handleNavClick(projectRef)}>Projects</button>
             <button onClick={() => handleNavClick(resumeRef)}>Resume</button>
             <button onClick={() => handleNavClick(contactRef)}>
               Contact Me
             </button>
-          </div>
+          </div>*/}
         </div>
         <Analytics />
         <div ref={aboutRef} className="section">
@@ -92,6 +116,6 @@ export function App() {
           <Contacts />
         </div>
       </div>
-    </>
+    </div>
   );
 }
