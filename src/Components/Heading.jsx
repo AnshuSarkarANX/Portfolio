@@ -7,7 +7,7 @@ const Heading = ({no,text}) => {
     return num;
   };
   return (
-    <div className="flex gap-[15px] items-center pb-[25px] mb-[50px] mx-[50px] border-b border-solid border-blackish border-opacity-40">
+    <div className="flex gap-[15px] items-center pb-[25px] mb-[50px]  border-b border-solid border-blackish border-opacity-40">
       <div className="bg-blackish text-white text-[14px] sm:text-[16px] lg:text-[20px] py-[5px] px-[10px] font-jetbrains">
         {formatNumber(no)}
       </div>

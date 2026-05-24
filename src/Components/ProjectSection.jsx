@@ -65,13 +65,13 @@ const ProjectSection = () => {
   };
 
   return (
-    <div className="projectSection">
+    <div className="projectSection mx-[50px]">
       <Heading no={2} text={"Works"} />
 
       <ProjectCard
         name={ProjectsArray[0].name}
         description={ProjectsArray[0].description}
-        stack = {ProjectsArray[0].stack}
+        stack={ProjectsArray[0].stack}
         tag={ProjectsArray[0].shortDescription}
         link={ProjectsArray[0].link}
       />
