@@ -19,6 +19,29 @@ export function App() {
     },150);
   };
 
+  const handleResumeOpen = () => {
+    window.open(
+      "https://drive.google.com/file/d/1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL/view?usp=sharing",
+      "_blank",
+    );
+  };
+  const handleResumeDownload = async () => {
+    const fileId = "1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL";
+
+    // Direct download URL
+    const url = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+    // Create temporary anchor
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "AnshuSarkar_Resume.pdf");
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="">
       {/*Desktop Side bar */}
@@ -71,7 +94,11 @@ export function App() {
                   <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px]  w-full sm:w-fit">
                     INITIATE_CONTACT()
                   </button>
-                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
+
+                  <button
+                    onClick={handleResumeDownload}
+                    className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
+                  >
                     DL_RESUME.PDF
                   </button>
                 </div>

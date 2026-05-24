@@ -7,56 +7,74 @@ import "swiper/css/navigation";
 import "./projectSection.css";
 import Projects from "./Projects.jsx";
 import Heading from "./Heading.jsx";
+import ProjectCard from "./ProjectCard.jsx";
+
+// const ProjectsArray = [
+//   {
+//     image: "/assets/circle-small-desk.jpg",
+//     title: "Circle",
+//     techStack:
+//       "TypeScript, React, Tailwindcss, shadcn, TanStack query, Appwrite",
+//     description:
+//       "Circle is an image-based social media app that offers users a responsive and interactive interface, allowing them to like, save, search, create, and edit posts. The app uses Appwrite for user authentication, authorization, database management, and storage, ensuring secure and efficient data handling. With these modern technologies, Cricle delivers a smooth user experience for sharing and discovering images in a social media environment.",
+//     link: "https://addtocircle.vercel.app/",
+//   },
+//   {
+//     image: "/assets/fruitphone-small-desk.jpg",
+//     title: "FruitPhone",
+//     techStack: "ReactJs, GSAP, Three.js, Tailwindcss, Vite",
+//     description:
+//       "FruitPhone is a replica website of the iPhone 15 Pro with an interactive and responsive user interface. It showcases a 3D model of the phone using Three.js, allowing users to interact with the model for an immersive experience. The website is styled with Tailwind CSS, ensuring a modern and sleek design. FruitPhone effectively highlights the features and design of the iPhone 15 Pro through a visually engaging platform.",
+//     link: "https://fruitphone.vercel.app/",
+//   },
+//   {
+//     image: "/assets/metflix-small-desk.jpg",
+//     title: "Metflix",
+//     techStack: "ReactJs, FireBase, Redux, TMDB API",
+//     description:
+//       "Metflix is a Netflix clone developed using ReactJS, providing an interactive and responsive user interface. Trailer videos are fetched and played in real-time from YouTube. User authentication is implemented using Firebase, ensuring secure access and personalized user experiences. Metflix replicates key features of Netflix, offering a smooth and dynamic platform for discovering and streaming media content.",
+//     link: "https://tadum.vercel.app/",
+//   },
+// ];
 
 const ProjectsArray = [
   {
-    image: "/assets/circle-small-desk.jpg",
-    title: "Circle",
-    techStack:
-      "TypeScript, React, Tailwindcss, shadcn, TanStack query, Appwrite",
+    name: "Skill.Test",
+    shortDescription: "AI-Powered Interview Assessment Platform",
+    stack: ["React.js", "Node.js", "Server-Sent Events (SSE)", "AI Integration"],
+    link: "",
     description:
-      "Circle is an image-based social media app that offers users a responsive and interactive interface, allowing them to like, save, search, create, and edit posts. The app uses Appwrite for user authentication, authorization, database management, and storage, ensuring secure and efficient data handling. With these modern technologies, Cricle delivers a smooth user experience for sharing and discovering images in a social media environment.",
-    link: "https://addtocircle.vercel.app/",
-  },
-  {
-    image: "/assets/fruitphone-small-desk.jpg",
-    title: "FruitPhone",
-    techStack: "ReactJs, GSAP, Three.js, Tailwindcss, Vite",
-    description:
-      "FruitPhone is a replica website of the iPhone 15 Pro with an interactive and responsive user interface. It showcases a 3D model of the phone using Three.js, allowing users to interact with the model for an immersive experience. The website is styled with Tailwind CSS, ensuring a modern and sleek design. FruitPhone effectively highlights the features and design of the iPhone 15 Pro through a visually engaging platform.",
-    link: "https://fruitphone.vercel.app/",
-  },
-  {
-    image: "/assets/metflix-small-desk.jpg",
-    title: "Metflix",
-    techStack: "ReactJs, FireBase, Redux, TMDB API",
-    description:
-      "Metflix is a Netflix clone developed using ReactJS, providing an interactive and responsive user interface. Trailer videos are fetched and played in real-time from YouTube. User authentication is implemented using Firebase, ensuring secure access and personalized user experiences. Metflix replicates key features of Netflix, offering a smooth and dynamic platform for discovering and streaming media content.",
-    link: "https://tadum.vercel.app/",
+      "Generates personalized skill-based tests with real-time generation updates and automated evaluation workflows.",
   },
 ];
-  
+
 const ProjectSection = () => {
-     const [deviceType, setDeviceType] = useState("desktop");
-     const progressCircle = useRef(null);
-     const progressContent = useRef(null);
-     const onAutoplayTimeLeft = (s, time, progress) => {
-       progressCircle.current.style.setProperty("--progress", 1 - progress);
-       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-     };
-     const detectDevice = () => {
-       if (window.innerWidth <= 768) {
-         setDeviceType("mobile");     
-       } else {
-         setDeviceType("desktop");
-       }
-     };
+  const [deviceType, setDeviceType] = useState("desktop");
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty("--progress", 1 - progress);
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  };
+  const detectDevice = () => {
+    if (window.innerWidth <= 768) {
+      setDeviceType("mobile");
+    } else {
+      setDeviceType("desktop");
+    }
+  };
 
   return (
     <div className="projectSection">
       <Heading no={2} text={"Works"} />
-      
-      
+
+      <ProjectCard
+        name={ProjectsArray[0].name}
+        description={ProjectsArray[0].description}
+        stack = {ProjectsArray[0].stack}
+        tag={ProjectsArray[0].shortDescription}
+        link={ProjectsArray[0].link}
+      />
       {/*<Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -97,10 +115,7 @@ const ProjectSection = () => {
         </div>
       </Swiper>*/}
 
-      <div>
-      
-      
-      </div>
+      <div></div>
     </div>
   );
 };
