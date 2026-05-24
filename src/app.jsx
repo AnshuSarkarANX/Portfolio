@@ -62,7 +62,7 @@ export function App() {
 
             <div className="sm:col-span-4 flex items-end">
               <div className="border-l border-solid border-black font-jetbrains px-[20px]">
-                <p className="opacity-70 text-center mb-[20px] text-[12px] sm:text-[16px]">
+                <p className="opacity-70 text-left mb-[20px] text-[12px] sm:text-[16px]">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Iste, laboriosam ab tempora odio exercitationem aliquid
                   perspiciatis quia
