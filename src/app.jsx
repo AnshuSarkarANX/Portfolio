@@ -59,7 +59,24 @@ export function App() {
                 </p>
               </div>
             </div>
-            <div className="sm:col-span-4 border-l border-solid border-black"></div>
+
+            <div className="sm:col-span-4 flex items-end">
+              <div className="border-l border-solid border-black font-jetbrains">
+                <p className="opacity-70 text-center mb-[20px]">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Iste, laboriosam ab tempora odio exercitationem aliquid
+                  perspiciatis quia
+                </p>
+                <div className="flex  gap-[25px] px-[20px]">
+                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 w-fit px-[10px] py-[2px]">
+                    INITIATE_CONTACT()
+                  </button>
+                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 w-fit px-[10px] py-[2px]">
+                    DL_RESUME.PDF
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/*<div className="navbar">
