@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./projectSection.css";
 import Projects from "./Projects.jsx";
+import Heading from "./Heading.jsx";
 
 const ProjectsArray = [
   {
@@ -53,10 +54,10 @@ const ProjectSection = () => {
 
   return (
     <div className="projectSection">
-      <h1 className=" text-center text-4xl  sm:text-7xl font-semibold underline my-10">
-        Projects
-      </h1>
-      <Swiper
+      <Heading no={2} text={"Works"} />
+      
+      
+      {/*<Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -94,7 +95,12 @@ const ProjectSection = () => {
             src="/assets/arrow-right.png"
           />
         </div>
-      </Swiper>
+      </Swiper>*/}
+
+      <div>
+      
+      
+      </div>
     </div>
   );
 };

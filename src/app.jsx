@@ -27,7 +27,7 @@ export function App() {
       </div>
       <div
         className="bg-[linear-gradient(to_right,#5e5e5e1a_2px,transparent_1px),linear-gradient(to_bottom,#5e5e5e1a_2px,transparent_1px)]
-    bg-[size:40px_40px]"
+    bg-[size:40px_40px] lg:pl-[50px]"
       >
         {/* <div className="white">
           <div className="squares">
@@ -37,9 +37,9 @@ export function App() {
           </div>
         </div>*/}
 
-        <div className="mainSection text-center h-screen">
-          <div className="grid sm:grid-cols-10 h-full bg-[url('./assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
-            <div className="sm:col-span-6 flex flex-col justify-around">
+        <div className="mainSection text-center h-screen pb-[50px] sm:pb-[100px]">
+          <div className="grid lg:grid-cols-10 h-full bg-[url('./assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
+            <div className="sm:col-span-6 flex flex-col justify-between">
               <div className="bg-backGround text-secondary text-opacity-50 border-solid border border-secondary border-opacity-30 w-fit px-[10px]">
                 SYS.INIT // 2024
               </div>
@@ -49,7 +49,7 @@ export function App() {
                   SARKAR
                 </p>
 
-                <p className="font-jetbrains  opacity-70 text-center">
+                <p className="font-jetbrains  text-[12px] sm:text-[16px] opacity-70 text-center">
                   ENGINEERING DIGITAL INTERFACES
                 </p>
 
@@ -61,17 +61,17 @@ export function App() {
             </div>
 
             <div className="sm:col-span-4 flex items-end">
-              <div className="border-l border-solid border-black font-jetbrains">
-                <p className="opacity-70 text-center mb-[20px]">
+              <div className="border-l border-solid border-black font-jetbrains px-[20px]">
+                <p className="opacity-70 text-center mb-[20px] text-[12px] sm:text-[16px]">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Iste, laboriosam ab tempora odio exercitationem aliquid
                   perspiciatis quia
                 </p>
-                <div className="flex  gap-[25px] px-[20px]">
-                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 w-fit px-[10px] py-[2px]">
+                <div className="flex flex-col sm:flex-row  gap-[25px] ">
+                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px]  w-full sm:w-fit">
                     INITIATE_CONTACT()
                   </button>
-                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 w-fit px-[10px] py-[2px]">
+                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
                     DL_RESUME.PDF
                   </button>
                 </div>
