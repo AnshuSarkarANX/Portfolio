@@ -11,7 +11,7 @@ const Heading = ({no,text}) => {
       <div className="bg-blackish text-white text-[14px] sm:text-[16px] lg:text-[20px] py-[5px] px-[10px] font-jetbrains">
         {formatNumber(no)}
       </div>
-      <p className="font-header font-semibold text-[20px] md:text-[28px] lg:text-[32px]">
+      <p className="font-header font-semibold text-[24px] md:text-[32px] lg:text-[40px]">
         {text}
       </p>
     </div>
