@@ -7,7 +7,7 @@ const ProjectCard = ({
   tag,
   link,
   images = [""],
-  stack = ["React", "NodeJs", "Gemini"],
+  stack = [""],
 }) => {
   return (
     <div className="grid lg:grid-cols-12 ">

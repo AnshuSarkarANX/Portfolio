@@ -47,25 +47,25 @@ export function App() {
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
+    const lastCard = track.lastElementChild;
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 1024px)", () => {
+      const lastCard = track.lastElementChild;
+      const totalScroll =
+        lastCard.offsetLeft - (window.innerWidth - lastCard.offsetWidth) / 2;
 
-    const totalScroll = track.scrollWidth - window.innerWidth / 5;
-
-    gsap.to(track, {
-      x: -totalScroll,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: `+=${totalScroll}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 0.5,
-        snap: {
-          snapTo: 1 / 2, // total cards - 1
-          duration: 0.8,
-          ease: "power1.inOut",
+      gsap.to(track, {
+        x: -totalScroll,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 20%",
+          end: `+=${totalScroll * 2}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 0.5,
         },
-      },
+      });
     });
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -155,17 +155,22 @@ export function App() {
         </div>
 
         <div ref={sectionRef} className="section mx-[50px] ">
-          <Heading text={"Experience"} no={3} />
+          <Heading text={"Experience"} no={2} />
           <div className="overflow-hidden h-fit flex items-center">
-            <div ref={trackRef} className="flex gap-[50px] w-max px-[10vw]">
+            <div
+              ref={trackRef}
+              className="flex lg:flex-row flex-col gap-[50px] w-max lg:px-[50px] lg:pr-[100px]"
+            >
               <WorkEx
                 title="Frontend Developer - cvDragon"
-                duration="Oct - Nov, 2024"
+                duration="Dec,2024 - Jan, 2026"
                 points={[
-                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
-                  "Implemented full CRUD functionality for appointments using REST APIs.",
-                  "Enhanced user experience with a responsive and seamless interface.",
-                ]}
+  "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
+  "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
+  "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
+  "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
+  "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools"
+]}
               />
               <WorkEx
                 title="Frontend Developer - Pearl Thoughts"

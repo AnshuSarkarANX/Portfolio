@@ -42,8 +42,12 @@ const ProjectsArray = [
     name: "Skill.Test",
     shortDescription: "AI-Powered Interview Assessment Platform",
     stack: ["React.js", "Node.js", "SSE"],
-    link: "",
-    images: ["./assets/projectImages/skilltestimage1.png", "./assets/projectImages/skilltestimage2.png", "./assets/projectImages/skilltestimage3.png"],
+    link: "https://skilltestai.vercel.app/",
+    images: [
+      "./assets/projectImages/skilltestimage1.png",
+      "./assets/projectImages/skilltestimage2.png",
+      "./assets/projectImages/skilltestimage3.png",
+    ],
     description:
       "Generates personalized skill-based tests with real-time generation updates and automated evaluation workflows.",
   },
@@ -67,7 +71,7 @@ const ProjectSection = () => {
 
   return (
     <div className="projectSection ">
-      <Heading no={2} text={"Works"} />
+      <Heading no={1} text={"Works"} />
 
       <ProjectCard
         name={ProjectsArray[0].name}

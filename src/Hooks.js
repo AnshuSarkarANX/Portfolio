@@ -1,4 +1,4 @@
-export const handleLinkOpen = ({link}) => {
+export const handleLinkOpen = (link) => {
   window.open(
     link,
     "_blank",
