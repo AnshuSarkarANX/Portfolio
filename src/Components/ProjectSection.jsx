@@ -66,7 +66,7 @@ const ProjectSection = () => {
   };
 
   return (
-    <div className="projectSection mx-[50px]">
+    <div className="projectSection ">
       <Heading no={2} text={"Works"} />
 
       <ProjectCard

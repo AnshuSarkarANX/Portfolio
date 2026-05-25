@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import WorkEx from "./Components/WorkEx";
 import ProjectSection from "./Components/ProjectSection";
 import "./app.css";
@@ -6,6 +6,11 @@ import "./Components/navbar.css";
 import ResumeSection from "./Components/ResumeSection";
 import Contacts from "./Components/Contacts";
 import { Analytics } from "@vercel/analytics/react";
+import Heading from "./Components/Heading";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function App() {
   const resumeRef = useRef(null);
@@ -16,10 +21,9 @@ export function App() {
   const handleNavClick = (ref) => {
     setTimeout(() => {
       ref?.current.scrollIntoView({ behavior: "smooth" });
-    },150);
+    }, 150);
   };
 
- 
   const handleResumeDownload = async () => {
     const fileId = "1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL";
 
@@ -36,6 +40,37 @@ export function App() {
 
     document.body.removeChild(link);
   };
+
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+
+    const totalScroll = track.scrollWidth - window.innerWidth / 5;
+
+    gsap.to(track, {
+      x: -totalScroll,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: `+=${totalScroll}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 0.5,
+        snap: {
+          snapTo: 1 / 2, // total cards - 1
+          duration: 0.8,
+          ease: "power1.inOut",
+        },
+      },
+    });
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, []);
 
   return (
     <div className="">
@@ -115,20 +150,23 @@ export function App() {
           {/* About Section Content */}
         </div>
 
-        <div ref={projectRef} className="section">
+        <div ref={projectRef} className="section mx-[50px]">
           <ProjectSection />
         </div>
 
-        <div
-          ref={resumeRef}
-          className="section relative flex flex-col md:flex-row md:gap-1 gap-[5vh] justify-around my-32"
-        >
-
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-semibold underline my-10">
-              Work Experience
-            </h1>
-            <div className="relative flex flex-col justify-between items-center mx-auto text-left">
+        <div ref={sectionRef} className="section mx-[50px] ">
+          <Heading text={"Experience"} no={3} />
+          <div className="overflow-hidden h-fit flex items-center">
+            <div ref={trackRef} className="flex gap-[50px] w-max px-[10vw]">
+              <WorkEx
+                title="Frontend Developer - cvDragon"
+                duration="Oct - Nov, 2024"
+                points={[
+                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
+                  "Implemented full CRUD functionality for appointments using REST APIs.",
+                  "Enhanced user experience with a responsive and seamless interface.",
+                ]}
+              />
               <WorkEx
                 title="Frontend Developer - Pearl Thoughts"
                 duration="Oct - Nov, 2024"
