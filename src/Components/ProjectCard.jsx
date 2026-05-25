@@ -1,4 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
+import { handleLinkOpen } from "../Hooks";
+import ImageContainer from "./ImageContainer";
 const ProjectCard = ({
   name,
   description,
@@ -8,15 +10,14 @@ const ProjectCard = ({
   stack = ["React", "NodeJs", "Gemini"],
 }) => {
   return (
-    <div className="grid lg:grid-cols-12  ">
-      <div className="col-span-8 mb-[50px] w-full h-[400px]">
-        <img
-          className="w-full h-full object-cover"
-          alt="project image"
-          src="./assets/projectImages/skilltestimage1.png"
-        />
+    <div className="grid lg:grid-cols-12 ">
+      {/* Image container*/}
+      <div className="lg:col-span-8 mb-[50px]">
+        <ImageContainer image={images[0]} />
       </div>
-      <div className="p-[20px] flex flex-col col-span-4 bg-white drop-shadow-lg lg:ml-[-50px] gap-[15px] ">
+
+      {/* Card container*/}
+      <div className="p-[50px] flex flex-col lg:col-span-4 bg-white drop-shadow-lg lg:ml-[-50px] gap-[25px] h-fit ">
         <div className="font-jetbrains text-secondary">
           {name}: {tag}
         </div>
@@ -36,10 +37,22 @@ const ProjectCard = ({
             );
           })}
         </div>
-        <button className="font-jetbrains w-full hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px] flex justify-center items-center gap-[50px]">
-          <p className="ml-[50px]">View Live</p>{" "}
+        <button
+          className="font-jetbrains w-full bg-blackish text-white  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px] flex justify-center items-center gap-[50px]"
+          onClick={() => handleLinkOpen(link)}
+        >
+          <p className="ml-[50px] font-bold">View Live</p>{" "}
           <FaArrowRight className="-rotate-45" />
         </button>
+      </div>
+      {/*rest of the images*/}
+      <div className="grid lg:col-span-12 lg:grid-cols-2 gap-[50px] my-[50px] lg:h-[500px] w-full ">
+        <div className="h-[380px] lg:self-start lg:w-[85%] justify-self-center w-full ">
+          <ImageContainer image={images[1]} />
+        </div>
+        <div className="h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
+          <ImageContainer image={images[2]} />
+        </div>
       </div>
     </div>
   );

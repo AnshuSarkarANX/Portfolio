@@ -19,12 +19,7 @@ export function App() {
     },150);
   };
 
-  const handleResumeOpen = () => {
-    window.open(
-      "https://drive.google.com/file/d/1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL/view?usp=sharing",
-      "_blank",
-    );
-  };
+ 
   const handleResumeDownload = async () => {
     const fileId = "1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL";
 
@@ -128,7 +123,7 @@ export function App() {
           ref={resumeRef}
           className="section relative flex flex-col md:flex-row md:gap-1 gap-[5vh] justify-around my-32"
         >
-          <ResumeSection />
+
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-semibold underline my-10">
               Work Experience

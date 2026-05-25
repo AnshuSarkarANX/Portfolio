@@ -41,8 +41,9 @@ const ProjectsArray = [
   {
     name: "Skill.Test",
     shortDescription: "AI-Powered Interview Assessment Platform",
-    stack: ["React.js", "Node.js", "Server-Sent Events (SSE)", "AI Integration"],
+    stack: ["React.js", "Node.js", "SSE"],
     link: "",
+    images: ["./assets/projectImages/skilltestimage1.png", "./assets/projectImages/skilltestimage2.png", "./assets/projectImages/skilltestimage3.png"],
     description:
       "Generates personalized skill-based tests with real-time generation updates and automated evaluation workflows.",
   },
@@ -74,6 +75,7 @@ const ProjectSection = () => {
         stack={ProjectsArray[0].stack}
         tag={ProjectsArray[0].shortDescription}
         link={ProjectsArray[0].link}
+        images={ProjectsArray[0].images}
       />
       {/*<Swiper
         spaceBetween={30}
