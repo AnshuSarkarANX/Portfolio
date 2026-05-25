@@ -12,6 +12,7 @@ module.exports = {
         blackish: "#222121",
         backGround: "#D9D9D9",
         secondary: "#5e5e5e",
+        red: "#BA1A1A",
       },
     },
   },

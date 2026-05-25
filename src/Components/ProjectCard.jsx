@@ -17,7 +17,7 @@ const ProjectCard = ({
       </div>
 
       {/* Card container*/}
-      <div className="p-[50px] flex flex-col lg:col-span-4 bg-white drop-shadow-lg lg:ml-[-50px] gap-[25px] h-fit ">
+      <div className="lg:p-[50px] p-[15px] flex flex-col lg:col-span-4 bg-white drop-shadow-lg lg:ml-[-50px] gap-[25px] h-fit ">
         <div className="font-jetbrains text-secondary">
           {name}: {tag}
         </div>
@@ -50,7 +50,7 @@ const ProjectCard = ({
         <div className="h-[380px] lg:self-start lg:w-[85%] justify-self-center w-full ">
           <ImageContainer image={images[1]} />
         </div>
-        <div className="h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
+        <div className=" hidden lg:block h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
           <ImageContainer image={images[2]} />
         </div>
       </div>
