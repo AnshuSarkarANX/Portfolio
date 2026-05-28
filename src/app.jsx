@@ -116,9 +116,9 @@ export function App() {
             <div className="sm:col-span-4 flex items-end">
               <div className="border-l border-solid border-black font-jetbrains px-[20px]">
                 <p className="opacity-70 text-left mb-[20px] text-[12px] sm:text-[16px]">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Iste, laboriosam ab tempora odio exercitationem aliquid
-                  perspiciatis quia
+                  Frontend Developer with experience building scalable web applications, real-time systems, and workflow-driven
+platforms using React. Worked on backend integrations, APIs, and data pipelines, with a growing focus on
+full-stack development and GenAI integration.
                 </p>
                 <div className="flex flex-col sm:flex-row  gap-[25px] ">
                   <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px]  w-full sm:w-fit">
