@@ -74,13 +74,16 @@ export function App() {
 
   return (
     <div className="">
-      {/*Desktop Side bar */}
-      <div className="hidden static lg:fixed lg:block top-0 left-0   z-10 bg-backGround h-screen w-[50px] border-2 border-red-500 border-solid transition-all duration-300 ease-in-out">
+      {/*Desktop Side bar 
+        
+        
+        <div className="hidden static lg:fixed lg:block top-0 left-0   z-10 bg-backGround h-screen w-[50px] border-2 border-red-500 border-solid transition-all duration-300 ease-in-out">
         abc
-      </div>
+      </div>*/}
+
       <div
         className="bg-[linear-gradient(to_right,#5e5e5e1a_2px,transparent_1px),linear-gradient(to_bottom,#5e5e5e1a_2px,transparent_1px)]
-    bg-[size:40px_40px] lg:pl-[50px]"
+    bg-[size:40px_40px] "
       >
         {/* <div className="white">
           <div className="squares">
@@ -116,9 +119,11 @@ export function App() {
             <div className="sm:col-span-4 flex items-end">
               <div className="border-l border-solid border-black font-jetbrains px-[20px]">
                 <p className="opacity-70 text-left mb-[20px] text-[12px] sm:text-[16px]">
-                  Frontend Developer with experience building scalable web applications, real-time systems, and workflow-driven
-platforms using React. Worked on backend integrations, APIs, and data pipelines, with a growing focus on
-full-stack development and GenAI integration.
+                  Frontend Developer with experience building scalable web
+                  applications, real-time systems, and workflow-driven platforms
+                  using React. Worked on backend integrations, APIs, and data
+                  pipelines, with a growing focus on full-stack development and
+                  GenAI integration.
                 </p>
                 <div className="flex flex-col sm:flex-row  gap-[25px] ">
                   <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px]  w-full sm:w-fit">
@@ -150,11 +155,11 @@ full-stack development and GenAI integration.
           {/* About Section Content */}
         </div>
 
-        <div ref={projectRef} className="section mx-[50px]">
+        <div ref={projectRef} className="section px-[50px]">
           <ProjectSection />
         </div>
 
-        <div ref={sectionRef} className="section mx-[50px] ">
+        <div ref={sectionRef} className="section px-[50px] ">
           <Heading text={"Experience"} no={2} />
           <div className="overflow-hidden h-fit flex items-center">
             <div
@@ -165,12 +170,12 @@ full-stack development and GenAI integration.
                 title="Frontend Developer - cvDragon"
                 duration="Dec,2024 - Jan, 2026"
                 points={[
-  "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
-  "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
-  "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
-  "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
-  "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools"
-]}
+                  "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
+                  "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
+                  "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
+                  "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
+                  "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools",
+                ]}
               />
               <WorkEx
                 title="Frontend Developer - Pearl Thoughts"
