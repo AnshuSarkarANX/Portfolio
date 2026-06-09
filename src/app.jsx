@@ -188,7 +188,7 @@ export function App() {
               />
               <WorkEx
                 title="Frontend Developer - WEBAXD"
-                duration="May - Aug, 2024"
+                duration="Jun - Aug, 2024"
                 points={[
                   "Developed a Javascript algorithm to improve the loading speed by 90%",
                   "Designed and implemented new features for better user experience",
