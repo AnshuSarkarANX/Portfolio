@@ -9,8 +9,10 @@ import { Analytics } from "@vercel/analytics/react";
 import Heading from "./Components/Heading";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export function App() {
   const resumeRef = useRef(null);
@@ -40,14 +42,23 @@ export function App() {
 
     document.body.removeChild(link);
   };
-
+  const bodyRef = useRef(null);
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const section = sectionRef.current;
+    const body = bodyRef.current;
     const track = trackRef.current;
-    const lastCard = track.lastElementChild;
+
+    const smooth = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.2, // how long (in seconds) it takes to "catch up" to the native scroll position
+
+      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
+
     const mm = gsap.matchMedia();
     mm.add("(min-width: 1024px)", () => {
       const lastCard = track.lastElementChild;
@@ -67,23 +78,14 @@ export function App() {
         },
       });
     });
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+  });
 
   return (
-    <div className="">
-      {/*Desktop Side bar 
-        
-        
-        <div className="hidden static lg:fixed lg:block top-0 left-0   z-10 bg-backGround h-screen w-[50px] border-2 border-red-500 border-solid transition-all duration-300 ease-in-out">
-        abc
-      </div>*/}
-
+    <div className="" ref={bodyRef} id="smooth-wrapper">
       <div
         className="bg-[linear-gradient(to_right,#5e5e5e1a_2px,transparent_1px),linear-gradient(to_bottom,#5e5e5e1a_2px,transparent_1px)]
     bg-[size:40px_40px] "
+        id="smooth-content"
       >
         {/* <div className="white">
           <div className="squares">
