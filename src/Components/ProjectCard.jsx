@@ -45,15 +45,16 @@ const ProjectCard = ({
           <FaArrowRight className="-rotate-45" />
         </button>
       </div>
-      {/*rest of the images*/}
-      <div className="grid lg:col-span-12 lg:grid-cols-2 gap-[50px] my-[50px] lg:h-[500px] w-full ">
-        <div className="h-[380px] lg:self-start lg:w-[85%] justify-self-center w-full ">
-          <ImageContainer image={images[1]} />
-        </div>
-        <div className=" hidden lg:block h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
-          <ImageContainer image={images[2]} />
-        </div>
-      </div>
+      {/*rest of the images
+        
+         <div className="grid lg:col-span-12 lg:grid-cols-2 gap-[50px] my-[50px] lg:h-[500px] w-full ">
+          <div className="h-[380px] lg:self-start lg:w-[85%] justify-self-center w-full ">
+            <ImageContainer image={images[1]} />
+          </div>
+          <div className=" hidden lg:block h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
+            <ImageContainer image={images[2]} />
+          </div>
+        </div>*/}
     </div>
   );
 };

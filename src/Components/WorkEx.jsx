@@ -1,6 +1,6 @@
-const WorkEx = ({ title, duration, points }) => {
+const WorkEx = ({ title, duration, points, className = "" }) => {
   return (
-    <div className="flex h-fit w-fit lg:w-screen mb-10 ">
+    <div className={`flex h-fit w-fit ${className} `}>
       <div className="h-fit w-fit ">
         <h1 className="text-xl md:text-2xl font-semibold">{title}</h1>
         <p className="font-medium text-lg opacity-90">{duration}</p>

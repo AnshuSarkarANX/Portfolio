@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import WorkEx from "./Components/WorkEx";
 import ProjectSection from "./Components/ProjectSection";
 import "./app.css";
@@ -11,6 +11,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import WorkExAccordian from "./Components/WorkExAccordian";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -45,6 +46,19 @@ export function App() {
   const bodyRef = useRef(null);
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  useEffect(() => {
+    // 2. Define the resize handler
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    // 3. Attach the event listener
+    window.addEventListener("resize", handleResize);
+
+    // 4. Clean up the event listener on unmount to prevent memory leaks
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -79,6 +93,10 @@ export function App() {
       });
     });
   });
+
+  useEffect(() => {
+    window.addEventListener("resize", detectDevice);
+  }, []);
 
   return (
     <div className="" ref={bodyRef} id="smooth-wrapper">
@@ -163,42 +181,60 @@ export function App() {
 
         <div ref={sectionRef} className="section px-[50px] ">
           <Heading text={"Experience"} no={2} />
-          <div className="overflow-hidden h-fit flex items-center">
-            <div
-              ref={trackRef}
-              className="flex lg:flex-row flex-col gap-[50px] w-max lg:px-[50px] lg:pr-[100px]"
-            >
-              <WorkEx
-                title="Frontend Developer - cvDragon"
-                duration="Dec,2024 - Jan, 2026"
-                points={[
-                  "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
-                  "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
-                  "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
-                  "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
-                  "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools",
-                ]}
-              />
-              <WorkEx
-                title="Frontend Developer - Pearl Thoughts"
-                duration="Oct - Nov, 2024"
-                points={[
-                  "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
-                  "Implemented full CRUD functionality for appointments using REST APIs.",
-                  "Enhanced user experience with a responsive and seamless interface.",
-                ]}
-              />
-              <WorkEx
-                title="Frontend Developer - WEBAXD"
-                duration="Jun - Aug, 2024"
-                points={[
-                  "Developed a Javascript algorithm to improve the loading speed by 90%",
-                  "Designed and implemented new features for better user experience",
-                  "Successfully delivered multiple projects",
-                ]}
-              />
+          {isMobile ? (
+            <WorkExAccordian />
+          ) : (
+            <div className="overflow-hidden ">
+              <div
+                ref={trackRef}
+                className="flex lg:flex-row flex-col gap-[100px] w-max lg:px-[50px] "
+              >
+                <div className="w-fit">
+                  <WorkEx
+                    title="Frontend Developer Intern  - Pearl Thoughts"
+                    duration="Oct - Nov, 2024"
+                    points={[
+                      "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
+                      "Implemented full CRUD functionality for appointments using REST APIs.",
+                      "Enhanced user experience with a responsive and seamless interface.",
+                    ]}
+                  />
+                  <WorkEx
+                    title="Frontend Developer Intern - WEBAXD"
+                    duration="Jun - Aug, 2024"
+                    points={[
+                      "Developed a Javascript algorithm to improve the loading speed by 90%",
+                      "Designed and implemented new features for better user experience",
+                      "Successfully delivered multiple projects",
+                    ]}
+                  />
+                </div>
+                <WorkEx
+                  title="Frontend Developer - cvDragon"
+                  duration="Dec,2024 - Jan, 2026"
+                  className="lg:w-[min(75vw,1200px)]"
+                  points={[
+                    "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
+                    "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
+                    "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
+                    "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
+                    "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools",
+                  ]}
+                />
+                <WorkEx
+                  title="Full-Stack Developer - PepHub Consultancy"
+                  duration="Feb,2026 - Present"
+                  className="lg:w-[80vw]"
+                  points={[
+                    "Developed a community-driven platform that enables users to create groups, organize events, manage participation, and coordinate activities through a centralized workflow",
+                    "Developed scalable REST APIs, JWT-based authentication, database models using Prisma ORM, and business workflows supporting e-commerce operations and customer account management",
+
+                    "Implemented performance optimizations, including virtualization and reusable UI patterns, to improve rendering efficiency and user experience when handling large datasets",
+                  ]}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div ref={contactRef} className="section">
