@@ -175,11 +175,11 @@ export function App() {
           {/* About Section Content */}
         </div>
 
-        <div ref={projectRef} className="section px-[50px]">
+        <div ref={projectRef} className="section px-[20px] sm:px-[50px]">
           <ProjectSection />
         </div>
 
-        <div ref={sectionRef} className="section px-[50px] ">
+        <div ref={sectionRef} className="section px-[20px] sm:px-[50px] ">
           <Heading text={"Experience"} no={2} />
           {isMobile ? (
             <WorkExAccordian />
