@@ -12,8 +12,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import WorkExAccordian from "./Components/WorkExAccordian";
+import HeroSection from "./Components/HeroSection";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
 export function App() {
   const resumeRef = useRef(null);
@@ -113,63 +114,7 @@ export function App() {
           </div>
         </div>*/}
 
-        <div className="mainSection text-center h-screen pb-[50px] sm:pb-[100px]">
-          <div className="grid lg:grid-cols-10 h-full bg-[url('./assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
-            <div className="sm:col-span-6 flex flex-col justify-between">
-              <div className="bg-backGround text-secondary text-opacity-50 border-solid border border-secondary border-opacity-30 w-fit px-[10px]">
-                SYS.INIT // 2024
-              </div>
-              <div className="w-fit">
-                <p className="name">
-                  ANSHU <br />
-                  SARKAR
-                </p>
-
-                <p className="font-jetbrains  text-[12px] sm:text-[16px] opacity-70 text-center">
-                  ENGINEERING DIGITAL INTERFACES
-                </p>
-
-                <p className="role">
-                  Frontend <br />
-                  Developer
-                </p>
-              </div>
-            </div>
-
-            <div className="sm:col-span-4 flex items-end">
-              <div className="border-l border-solid border-black font-jetbrains px-[20px]">
-                <p className="opacity-70 text-left mb-[20px] text-[12px] sm:text-[16px]">
-                  Frontend Developer with experience building scalable web
-                  applications, real-time systems, and workflow-driven platforms
-                  using React. Worked on backend integrations, APIs, and data
-                  pipelines, with a growing focus on full-stack development and
-                  GenAI integration.
-                </p>
-                <div className="flex flex-col sm:flex-row  gap-[25px] ">
-                  <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px]  w-full sm:w-fit">
-                    INITIATE_CONTACT()
-                  </button>
-
-                  <button
-                    onClick={handleResumeDownload}
-                    className="bg-backGround hover:bg-blackish hover:text-white text-secondary  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
-                  >
-                    DL_RESUME.PDF
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/*<div className="navbar">
-            <button onClick={() => handleNavClick(aboutRef)}>About</button>
-            <button onClick={() => handleNavClick(projectRef)}>Projects</button>
-            <button onClick={() => handleNavClick(resumeRef)}>Resume</button>
-            <button onClick={() => handleNavClick(contactRef)}>
-              Contact Me
-            </button>
-          </div>*/}
-        </div>
+        <HeroSection handleResumeDownload={handleResumeDownload} />
         <Analytics />
         <div ref={aboutRef} className="section">
           {/* About Section Content */}

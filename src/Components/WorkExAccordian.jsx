@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(useGSAP);
 
     const experiences = [
       {
@@ -48,11 +49,6 @@ import { useGSAP } from "@gsap/react";
       },
     ];
 const WorkExAccordian = () => {
-
-
-
-
-
 
   const [openIndex, setOpenIndex] = useState(experiences.length - 1);
 
