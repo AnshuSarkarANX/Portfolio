@@ -122,21 +122,20 @@ const WorkExAccordian = () => {
       {experiences.map((experience, index) => (
         <div
           key={index}
-          className={`border-solid border border-secondary border-opacity-50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg rounded-md ${
+          className={`border-solid border border-secondary/50 border-opacity-50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg ${
             openIndex === index ? "bg-gray-100/20" : ""
           }`}
         >
           {/* Header row — always visible */}
           <div
             onClick={() => toggleAccordion(index)}
-            className="cursor-pointer flex flex-col gap-[5px] sm:flex-row justify-between items-start rounded-md"
+            className="cursor-pointer flex flex-col gap-[5px] sm:flex-row justify-between items-start "
           >
             <h3 className="text-xl font-bold">{experience.title}</h3>
 
             <div className="flex items-center gap-3 self-end">
               <p className="text-gray-500 text-nowrap">{experience.duration}</p>
               {/* Chevron */}
-              
             </div>
           </div>
 
