@@ -71,7 +71,7 @@ export default function HeroSection({ handleResumeDownload }) {
       cycle();
     },
     { scope: sectionRef },
-  ); // ← scoped: selectors only target inside sectionRef
+  ); 
 
   return (
     <div
@@ -92,9 +92,8 @@ export default function HeroSection({ handleResumeDownload }) {
               ENGINEERING DIGITAL INTERFACES
             </p>
 
-            {/* ✅ ref attached here — GSAP rewrites innerHTML directly */}
+            {/*  ref attached here, GSAP rewrites innerHTML directly */}
             <p ref={roleRef} className="role text-nowrap" />
-       <br/>     Developer
           </div>
         </div>
 
