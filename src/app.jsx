@@ -167,7 +167,7 @@ export function App() {
                   ]}
                 />
                 <WorkEx
-                  title="Full-Stack Developer - PepHub Consultancy"
+                  title="Software Development Engineer - PepHub Consultancy"
                   duration="Feb,2026 - Present"
                   className="lg:w-[80vw]"
                   points={[
