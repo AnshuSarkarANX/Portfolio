@@ -49,7 +49,7 @@ const ProjectsArray = [
       "./assets/projectImages/skilltestimage3.png",
     ],
     description:
-      "Generates personalized skill-based tests with real-time generation updates and automated evaluation workflows.",
+      "AI-powered interview and assessment platform that evaluates skills, matches resumes with job descriptions, and conducts personalized voice-based interviews.",
     demo: false,
     demoVideo:
       "https://stream.mux.com/swxtlyqaoozs4Lh5akj4benLZmHskwMZx8i01AwflVOE.m3u8",
