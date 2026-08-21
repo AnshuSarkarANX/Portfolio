@@ -50,6 +50,10 @@ const ProjectsArray = [
     ],
     description:
       "Generates personalized skill-based tests with real-time generation updates and automated evaluation workflows.",
+    demo: false,
+    demoVideo:
+      "https://stream.mux.com/swxtlyqaoozs4Lh5akj4benLZmHskwMZx8i01AwflVOE.m3u8",
+    hasDemo: true,
   },
 ];
 
@@ -79,6 +83,9 @@ const ProjectSection = () => {
         stack={ProjectsArray[0].stack}
         tag={ProjectsArray[0].shortDescription}
         link={ProjectsArray[0].link}
+        
+        demoVideo={ProjectsArray[0].demoVideo}
+        hasDemo={ProjectsArray[0].hasDemo}
         images={ProjectsArray[0].images}
       />
       {/*<Swiper

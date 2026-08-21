@@ -1,6 +1,10 @@
 import { FaArrowRight } from "react-icons/fa";
 import { handleLinkOpen } from "../Hooks";
 import ImageContainer from "./ImageContainer";
+import { Switch } from "@base-ui/react/switch";
+import { useState } from "react";
+import { VideoPlayerComponent } from "./VideoPlayer";
+
 const ProjectCard = ({
   name,
   description,
@@ -8,12 +12,34 @@ const ProjectCard = ({
   link,
   images = [""],
   stack = [""],
+  demoVideo,
+  hasDemo = false,
 }) => {
+  const [isDemo, setIsDemo] = useState(false);
   return (
     <div className="grid lg:grid-cols-12 ">
       {/* Image container*/}
-      <div className="lg:col-span-8 mb-[50px]">
-        <ImageContainer image={images[0]} />
+      <div className="lg:col-span-8 mb-[50px] flex flex-col gap-[20px] h-[400px]">
+        {isDemo ? (
+          <VideoPlayerComponent src={demoVideo} />
+        ) : (
+          <ImageContainer image={images[0]} />
+        )}
+        <div className="self-center">
+          {hasDemo && (
+            <div className="flex items-center gap-2 w-full ">
+              <Switch.Root
+                render={<button />}
+                checked={isDemo}
+                onCheckedChange={setIsDemo}
+                className="flex h-5 w-9 shrink-0 border border-neutral-950 bg-white p-0.5 transition-colors duration-150 ease-[ease]  data-[checked]:bg-neutral-950  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950"
+              >
+                <Switch.Thumb className="size-3.5 bg-neutral-950 transition-[translate,background-color] duration-150 ease-[ease] data-[checked]:translate-x-4 data-[checked]:bg-white " />
+              </Switch.Root>
+              View Demo
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Card container*/}
