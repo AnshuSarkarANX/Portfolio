@@ -25,21 +25,6 @@ const ProjectCard = ({
         ) : (
           <ImageContainer image={images[0]} />
         )}
-        <div className="self-center">
-          {hasDemo && (
-            <div className="flex items-center gap-2 w-full ">
-              <Switch.Root
-                render={<button />}
-                checked={isDemo}
-                onCheckedChange={setIsDemo}
-                className="flex h-5 w-9 shrink-0 border border-neutral-950 bg-white p-0.5 transition-colors duration-150 ease-[ease]  data-[checked]:bg-neutral-950  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950"
-              >
-                <Switch.Thumb className="size-3.5 bg-neutral-950 transition-[translate,background-color] duration-150 ease-[ease] data-[checked]:translate-x-4 data-[checked]:bg-white " />
-              </Switch.Root>
-              View Demo
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Card container*/}
@@ -63,13 +48,22 @@ const ProjectCard = ({
             );
           })}
         </div>
-        <button
-          className="font-jetbrains w-full bg-blackish text-white  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:2px] flex justify-center items-center gap-[50px]"
-          onClick={() => handleLinkOpen(link)}
-        >
-          <p className="ml-[50px] font-bold">View Live</p>{" "}
-          <FaArrowRight className="-rotate-45" />
-        </button>
+        <div className="grid grid-cols-10 items-stretch gap-[10px]">
+          {" "}
+          <button
+            className="font-jetbrains col-span-7 w-full bg-blackish text-white  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px]  flex justify-center items-center gap-[50px]"
+            onClick={() => handleLinkOpen(link)}
+          >
+            <p className="ml-[50px] font-bold">View Live</p>{" "}
+            <FaArrowRight className="-rotate-45" />
+          </button>
+          <button
+            className="font-jetbrains col-span-3  border-blackish text-black  border-solid border  border-opacity-50 py-[10px] px-[8px] "
+            onClick={() => setIsDemo((prev) => !prev)}
+          >
+            {isDemo ? "Hide Demo" : "View Demo"}
+          </button>
+        </div>
       </div>
       {/*rest of the images
         

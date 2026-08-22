@@ -1,5 +1,14 @@
-import { render } from 'preact'
 import { App } from './app.jsx'
-import './index.css'
+import { createRoot } from "preact/compat/client";
 
-render(<App />, document.getElementById('app'))
+import './index.css'
+import { BrowserRouter,Routes,Route } from "react-router";
+import ProjectsPage from './Pages/ProjectsPage.jsx';
+createRoot(document.getElementById("app")).render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/projects" element={<ProjectsPage />} />
+    </Routes>
+  </BrowserRouter>,
+);

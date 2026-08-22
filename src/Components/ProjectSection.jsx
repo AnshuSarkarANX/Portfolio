@@ -75,20 +75,20 @@ const ProjectSection = () => {
 
   return (
     <div className="projectSection ">
-      <Heading no={1} text={"Works"} />
+      <Heading no={1} text={"Works"} buttonText="View All" buttonLink = "/projects"/>
+      <div className="flex flex-col gap-[20px]">
+        <ProjectCard
+          name={ProjectsArray[0].name}
+          description={ProjectsArray[0].description}
+          stack={ProjectsArray[0].stack}
+          tag={ProjectsArray[0].shortDescription}
+          link={ProjectsArray[0].link}
+          demoVideo={ProjectsArray[0].demoVideo}
+          hasDemo={ProjectsArray[0].hasDemo}
+          images={ProjectsArray[0].images}
+        />
 
-      <ProjectCard
-        name={ProjectsArray[0].name}
-        description={ProjectsArray[0].description}
-        stack={ProjectsArray[0].stack}
-        tag={ProjectsArray[0].shortDescription}
-        link={ProjectsArray[0].link}
-        
-        demoVideo={ProjectsArray[0].demoVideo}
-        hasDemo={ProjectsArray[0].hasDemo}
-        images={ProjectsArray[0].images}
-      />
-      {/*<Swiper
+        {/*<Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -127,8 +127,7 @@ const ProjectSection = () => {
           />
         </div>
       </Swiper>*/}
-
-      <div></div>
+      </div>
     </div>
   );
 };
