@@ -1,9 +1,20 @@
+"use client";
+
 import { FaArrowRight } from "react-icons/fa";
-import { handleLinkOpen } from "../Hooks";
+import dynamic from "next/dynamic";
 import ImageContainer from "./ImageContainer";
-import { Switch } from "@base-ui/react/switch";
+import { handleLinkOpen } from "./Hooks";
 import { useState } from "react";
-import { VideoPlayerComponent } from "./VideoPlayer";
+
+const VideoPlayerComponent = dynamic(
+  () => import("./VideoPlayer").then((m) => m.VideoPlayerComponent),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-full w-full animate-pulse bg-blackish/10" />
+    ),
+  },
+);
 
 const ProjectCard = ({
   name,
@@ -41,7 +52,7 @@ const ProjectCard = ({
             return (
               <div
                 key={i}
-                className="border border-opacity-30 flex  text-[14px] items-center justify-center font-jetbrains border-solid border-blackish text-center px-[10px] py-[4px]"
+                className="border border-blackish/30 flex text-[14px] items-center justify-center font-jetbrains border-solid text-center px-[10px] py-[4px]"
               >
                 {t}
               </div>
@@ -51,30 +62,24 @@ const ProjectCard = ({
         <div className="grid grid-cols-10 items-stretch gap-[10px]">
           {" "}
           <button
-            className="font-jetbrains col-span-7 w-full bg-blackish text-white  border-solid border border-secondary border-opacity-50 px-[10px] py-[10px]  flex justify-center items-center gap-[50px]"
+            className={`font-jetbrains w-full bg-blackish text-white  border-solid border border-secondary/50 px-[10px] py-[10px]  flex justify-center items-center gap-[50px] ${
+              hasDemo ? "col-span-7" : "col-span-10"
+            }`}
             onClick={() => handleLinkOpen(link)}
           >
             <p className="ml-[50px] font-bold">View Live</p>{" "}
             <FaArrowRight className="-rotate-45" />
           </button>
-          <button
-            className="font-jetbrains col-span-3  border-blackish text-black  border-solid border  border-opacity-50 py-[10px] px-[8px] "
-            onClick={() => setIsDemo((prev) => !prev)}
-          >
-            {isDemo ? "Hide Demo" : "View Demo"}
-          </button>
+          {hasDemo && (
+            <button
+              className="font-jetbrains col-span-3  border-blackish text-black  border-solid border  border-blackish/30 py-[10px] px-[8px] "
+              onClick={() => setIsDemo((prev) => !prev)}
+            >
+              {isDemo ? "Hide Demo" : "View Demo"}
+            </button>
+          )}
         </div>
       </div>
-      {/*rest of the images
-        
-         <div className="grid lg:col-span-12 lg:grid-cols-2 gap-[50px] my-[50px] lg:h-[500px] w-full ">
-          <div className="h-[380px] lg:self-start lg:w-[85%] justify-self-center w-full ">
-            <ImageContainer image={images[1]} />
-          </div>
-          <div className=" hidden lg:block h-[380px] lg:self-end w-full lg:w-[85%] justify-self-center ">
-            <ImageContainer image={images[2]} />
-          </div>
-        </div>*/}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -78,9 +80,9 @@ export default function HeroSection({ handleResumeDownload }) {
       ref={sectionRef}
       className="mainSection text-center h-screen pb-[50px] sm:pb-[100px]"
     >
-      <div className="grid lg:grid-cols-10 h-full bg-[url('./assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
+      <div className="grid lg:grid-cols-10 h-full bg-[url('/assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
         <div className="sm:col-span-6 flex flex-col justify-between">
-          <div className="bg-backGround text-secondary text-opacity-50 border-solid border border-secondary border-opacity-30 w-fit px-[10px]">
+          <div className="bg-backGround text-secondary/50 border-solid border border-secondary/30 w-fit px-[10px]">
             SYS.INIT // 2024
           </div>
           <div className="w-fit">
@@ -107,12 +109,12 @@ export default function HeroSection({ handleResumeDownload }) {
               GenAI integration.
             </p>
             <div className="flex flex-col sm:flex-row gap-[25px]">
-              <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
+              <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
                 INITIATE_CONTACT()
               </button>
               <button
                 onClick={handleResumeDownload}
-                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary border-opacity-50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
+                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
               >
                 DL_RESUME.PDF
               </button>

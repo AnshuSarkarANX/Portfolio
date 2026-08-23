@@ -1,14 +1,22 @@
+"use client";
+
 import "react-iv-viewer/dist/react-iv-viewer.css";
-import { FullScreenViewer } from "react-iv-viewer";
-import {useState} from "react";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+
+const FullScreenViewer = dynamic(
+  () => import("react-iv-viewer").then((m) => m.FullScreenViewer),
+  { ssr: false },
+);
+
 const ResumeSection = () => {
-    const [clicked, setClicked] = useState(false);
-    const handleClick = () =>{
-        setClicked(true);
-        setTimeout(() => {
-           setClicked(false); 
-        }, 3000);
-    }
+  const [clicked, setClicked] = useState(false);
+  const handleClick = () => {
+    setClicked(true);
+    setTimeout(() => {
+      setClicked(false);
+    }, 3000);
+  };
   return (
     <div className="h-fit w-[70vmin] mx-auto flex flex-col items-center ">
       <h1 className="text-4xl  md:text-5xl font-semibold underline my-10">
@@ -21,7 +29,7 @@ const ResumeSection = () => {
       >
         <button
           className={`my-[5vmin] border-dotted border-[#222121]  p-1 border-[3px] hover:border-solid transition
-      ${clicked ? "bg-black bg-opacity-20" : ""}`}
+      ${clicked ? "bg-black/20" : ""}`}
           onClick={handleClick}
         >
           Download
@@ -29,6 +37,6 @@ const ResumeSection = () => {
       </a>
     </div>
   );
-}
+};
 
-export default ResumeSection
+export default ResumeSection;

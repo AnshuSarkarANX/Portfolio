@@ -1,3 +1,5 @@
+"use client";
+
 import "@videojs/react/video/minimal-skin.css";
 import { VideoPlayer, MinimalVideoSkin } from "@videojs/react/video";
 import { MuxVideo } from "@videojs/react/media/mux-video";

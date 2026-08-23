@@ -1,12 +1,11 @@
-import "./projectSection.css";
-import Heading from "./Heading.jsx";
-import ProjectCard from "./ProjectCard.jsx";
+import Link from "next/link";
+import ProjectCard from "../_components/ProjectCard";
 
 const ProjectsArray = [
   {
     name: "Skill.Test",
     shortDescription: "AI-Powered Interview Assessment Platform",
-    stack: ["React.js", "Voice-Agents", "WebSockets"],
+    stack: ["React.js", "Node.js", "SSE"],
     link: "https://skilltestai.vercel.app/",
     images: [
       "/assets/projectImages/skilltestimage1.png",
@@ -25,11 +24,7 @@ const ProjectsArray = [
       "Distributed Search Engine for latest news around the tech world",
     stack: ["FastAPI", "Elasticsearch", "Docker"],
     link: "https://newsearche.vercel.app/",
-    images: [
-      "/assets/projectImages/skilltestimage1.png",
-      "/assets/projectImages/skilltestimage2.png",
-      "/assets/projectImages/skilltestimage3.png",
-    ],
+    images: ["/assets/projectImages/TechPulseImage.png"],
     description:
       "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria. ",
     demoVideo: "",
@@ -39,37 +34,40 @@ const ProjectsArray = [
     name: "La Perfume",
     shortDescription:
       "Demo Portfolio for a Perfume Brand",
-    stack: ["FastAPI", "Elasticsearch", "Docker"],
-    link: "https://newsearche.vercel.app/",
-    images: ["/assets/projectImages/TechPulseImage.png"],
+    stack: ["Next.js", "GSAP", "TailwindCSS"],
+    link: "https://laperfumeai.vercel.app/",
+    images: ["/assets/projectImages/LaPerfumeImage.png"],
     description:
-      "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria. ",
+      "A demo portfolio for a customized perfume brand, showcasing their services.",
     demoVideo: "",
     hasDemo: false,
   },
 ];
 
-const ProjectSection = () => {
+export const metadata = {
+  title: "Projects | Anshu Sarkar®",
+  description:
+    "Selected projects by Anshu Sarkar — AI platforms, full-stack apps and frontend experiments.",
+};
+
+const ProjectsPage = () => {
   return (
-    <div className="projectSection ">
-      <Heading no={1} text={"Projects"} buttonText="View All" buttonLink="/projects" />
-      <div className="flex flex-col gap-[20px]">
+    <main className="mainSection px-[20px] sm:px-[50px] py-[50px]">
+      <h1 className="name mb-[50px]">PROJECTS</h1>
+      <div className="flex flex-col gap-[50px]">
         {ProjectsArray.map((project) => (
           <ProjectCard
             key={project.name}
-            name={project.name}
-            description={project.description}
-            stack={project.stack}
+            {...project}
             tag={project.shortDescription}
-            link={project.link}
-            demoVideo={project.demoVideo} 
-            hasDemo={project.hasDemo}
-            images={project.images}
           />
         ))}
       </div>
-    </div>
+      <Link href="/" className="font-jetbrains inline-block mt-[50px] underline">
+        ← BACK_HOME
+      </Link>
+    </main>
   );
 };
 
-export default ProjectSection;
+export default ProjectsPage;
