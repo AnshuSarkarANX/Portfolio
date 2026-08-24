@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -118,7 +120,7 @@ const WorkExAccordian = () => {
       {experiences.map((experience, index) => (
         <div
           key={index}
-          className={`border-solid border border-secondary/50 border-opacity-50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg ${
+          className={`border-solid border border-secondary/50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg ${
             openIndex === index ? "bg-gray-100/20" : ""
           }`}
         >
@@ -148,7 +150,7 @@ const WorkExAccordian = () => {
             ref={(el) => (panelRefs.current[index] = el)}
             style={{ overflow: "hidden", height: 0, opacity: 0 }}
           >
-            <div className="border-t border-solid border-blackish border-opacity-40">
+            <div className="border-t border-solid border-blackish/40">
               <ul className="list-disc ml-[20px] mt-4">
                 {experience.points.map((point, i) => (
                   <li key={i} className="text-gray-700">

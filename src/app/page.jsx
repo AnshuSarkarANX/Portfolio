@@ -1,32 +1,34 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import WorkEx from "./Components/WorkEx";
-import ProjectSection from "./Components/ProjectSection";
-import "./app.css";
-import "./Components/navbar.css";
-import ResumeSection from "./Components/ResumeSection";
-import Contacts from "./Components/Contacts";
-import { Analytics } from "@vercel/analytics/react";
-import Heading from "./Components/Heading";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import WorkExAccordian from "./Components/WorkExAccordian";
-import HeroSection from "./Components/HeroSection";
+
+import ProjectSection from "./_components/ProjectSection";
+import ResumeSection from "./_components/ResumeSection";
+import Contacts from "./_components/Contacts";
+import Heading from "./_components/Heading";
+import WorkExAccordian from "./_components/WorkExAccordian";
+import HeroSection from "./_components/HeroSection";
+import WorkEx from "./_components/WorkEx";
+import useIsMobile from "./_components/useIsMobile";
+import "./_components/navbar.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
-export function App() {
+export default function Home() {
   const resumeRef = useRef(null);
   const projectRef = useRef(null);
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
 
-  const handleNavClick = (ref) => {
-    setTimeout(() => {
-      ref?.current.scrollIntoView({ behavior: "smooth" });
-    }, 150);
-  };
+  const bodyRef = useRef(null);
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+
+  const isMobile = useIsMobile();
 
   const handleResumeDownload = async () => {
     const fileId = "1-KW2C7pZNkJG9oFLJ4jbUC48PHb-TcuL";
@@ -44,60 +46,47 @@ export function App() {
 
     document.body.removeChild(link);
   };
-  const bodyRef = useRef(null);
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-  useEffect(() => {
-    // 2. Define the resize handler
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
 
-    // 3. Attach the event listener
-    window.addEventListener("resize", handleResize);
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      const track = trackRef.current;
 
-    // 4. Clean up the event listener on unmount to prevent memory leaks
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useGSAP(() => {
-    const section = sectionRef.current;
-    const body = bodyRef.current;
-    const track = trackRef.current;
-
-    const smooth = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.2, // how long (in seconds) it takes to "catch up" to the native scroll position
-
-      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-    });
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 1024px)", () => {
-      const lastCard = track.lastElementChild;
-      const totalScroll =
-        lastCard.offsetLeft - (window.innerWidth - lastCard.offsetWidth) / 2;
-
-      gsap.to(track, {
-        x: -totalScroll,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 20%",
-          end: `+=${totalScroll * 2}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 0.5,
-        },
+      const smooth = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.2,
+        smoothTouch: 0.1,
       });
-    });
-  });
 
-  useEffect(() => {
-    window.addEventListener("resize", detectDevice);
-  }, []);
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        const lastCard = track.lastElementChild;
+        const totalScroll =
+          lastCard.offsetLeft - (window.innerWidth - lastCard.offsetWidth) / 2;
+
+        gsap.to(track, {
+          x: -totalScroll,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 20%",
+            end: `+=${totalScroll * 2}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 0.5,
+          },
+        });
+      });
+
+      // ScrollSmoother instances are not reverted by useGSAP — kill explicitly
+      return () => {
+        mm.revert();
+        smooth.kill();
+      };
+    },
+    { scope: bodyRef },
+  );
 
   return (
     <div className="" ref={bodyRef} id="smooth-wrapper">
@@ -106,16 +95,8 @@ export function App() {
     bg-[size:40px_40px] "
         id="smooth-content"
       >
-        {/* <div className="white">
-          <div className="squares">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <div key={index} className="square"></div>
-            ))}
-          </div>
-        </div>*/}
-
         <HeroSection handleResumeDownload={handleResumeDownload} />
-        <Analytics />
+
         <div ref={aboutRef} className="section">
           {/* About Section Content */}
         </div>

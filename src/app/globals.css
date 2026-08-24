@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-blackish: #222121;
+  --color-backGround: #d9d9d9;
+  --color-secondary: #5e5e5e;
+  --color-red: #ba1a1a;
+
+  --font-header: var(--font-playfair-display), serif;
+  --font-body: var(--font-hanken-grotesk), sans-serif;
+  --font-jetbrains: var(--font-jetbrains-mono), monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  body {
+    font-family: var(--font-body);
+    line-height: 1.5;
+    color: #222121;
+    background-color: #d9d9d9;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .main-container {
+    @apply min-h-screen px-4 md:px-8 lg:px-16;
+  }
+
+  .name {
+    @apply font-header font-bold text-left drop-shadow-xs text-[70px] leading-[70px] sm:text-[115px] sm:leading-[115px] md:text-[135px] md:leading-[135px];
+  }
+
+  /* v3 note: `.role` used @apply name — cross-class apply is gone in v4, duplicated here */
+  .role {
+    @apply font-header font-bold text-left drop-shadow-xs text-secondary text-[70px] leading-[70px] sm:text-[115px] sm:leading-[115px] md:text-[135px] md:leading-[135px];
+  }
+}
