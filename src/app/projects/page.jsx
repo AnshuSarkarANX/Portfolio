@@ -42,6 +42,17 @@ const ProjectsArray = [
     demoVideo: "",
     hasDemo: false,
   },
+  {name:"SIXBIT",
+    shortDescription:
+      "URL shortner with analytics and caching.",
+    stack: ["React.js", "Redis", "Express.js"],
+    link: "https://sixbit.onrender.com",
+    images: ["/assets/projectImages/SixbitImage.png"],
+    description:
+      "A url shortener with analytics and caching capabilities. Shortens long url to a unique six character code & QR code, caches frequently used urls and monitor click rates.",
+    demoVideo: "",
+    hasDemo: false,
+  }
 ];
 
 export const metadata = {
