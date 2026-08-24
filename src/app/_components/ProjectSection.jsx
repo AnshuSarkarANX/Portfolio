@@ -19,34 +19,6 @@ const ProjectsArray = [
       "https://stream.mux.com/swxtlyqaoozs4Lh5akj4benLZmHskwMZx8i01AwflVOE.m3u8",
     hasDemo: true,
   },
-  {
-    name: "TechPulse",
-    shortDescription:
-      "Distributed Search Engine for latest news around the tech world",
-    stack: ["FastAPI", "Elasticsearch", "Docker"],
-    link: "https://newsearche.vercel.app/",
-    images: [
-      "/assets/projectImages/skilltestimage1.png",
-      "/assets/projectImages/skilltestimage2.png",
-      "/assets/projectImages/skilltestimage3.png",
-    ],
-    description:
-      "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria. ",
-    demoVideo: "",
-    hasDemo: false,
-  },
-  {
-    name: "La Perfume",
-    shortDescription:
-      "Demo Portfolio for a Perfume Brand",
-    stack: ["FastAPI", "Elasticsearch", "Docker"],
-    link: "https://newsearche.vercel.app/",
-    images: ["/assets/projectImages/TechPulseImage.png"],
-    description:
-      "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria. ",
-    demoVideo: "",
-    hasDemo: false,
-  },
 ];
 
 const ProjectSection = () => {
