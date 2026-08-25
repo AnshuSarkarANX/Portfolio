@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import ContactDialog from "./ContactDialog";
 
 gsap.registerPlugin(useGSAP);
 
@@ -12,6 +13,7 @@ const PHRASES = ["Frontend\nDeveloper", "Full Stack\nDeveloper"];
 export default function HeroSection({ handleResumeDownload }) {
   const sectionRef = useRef(null); // scope ref — all GSAP selectors are scoped to this
   const roleRef = useRef(null); // the <p class="role"> element
+  const [contactOpen, setContactOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -109,7 +111,10 @@ export default function HeroSection({ handleResumeDownload }) {
               GenAI integration.
             </p>
             <div className="flex flex-col sm:flex-row gap-[25px]">
-              <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
+              <button
+                onClick={() => setContactOpen(true)}
+                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
+              >
                 INITIATE_CONTACT()
               </button>
               <button
@@ -122,6 +127,7 @@ export default function HeroSection({ handleResumeDownload }) {
           </div>
         </div>
       </div>
+      <ContactDialog open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }
