@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import ContactDialog from "./ContactDialog";
 
 gsap.registerPlugin(useGSAP);
 
@@ -42,6 +43,7 @@ export default function HeroSection({ handleResumeDownload }) {
   const driftRef = useRef(null);
   const pinkRefs = useRef([]);
   const blueRefs = useRef([]);
+  const [contactOpen, setContactOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -135,9 +137,12 @@ export default function HeroSection({ handleResumeDownload }) {
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-          <a href="mailto:anshusarkaranx@gmail.com" className="stamp-btn">
-            Start a project
-          </a>
+          <button
+            onClick={() => setContactOpen(true)}
+            className="stamp-btn"
+          >
+            Contact me
+          </button>
           <button
             onClick={handleResumeDownload}
             className="stamp-btn stamp-btn--ink"
@@ -173,6 +178,8 @@ export default function HeroSection({ handleResumeDownload }) {
           ))}
         </div>
       </div>
+
+      <ContactDialog open={contactOpen} onClose={() => setContactOpen(false)} />
     </section>
   );
 }
