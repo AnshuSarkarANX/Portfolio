@@ -120,8 +120,10 @@ const WorkExAccordian = () => {
       {experiences.map((experience, index) => (
         <div
           key={index}
-          className={`border-solid border border-secondary/50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg ${
-            openIndex === index ? "bg-gray-100/20" : ""
+          className={`border-solid border-2 p-[20px] sm:py-[40px] relative transition-colors duration-300 ease-in-out ${
+            openIndex === index
+              ? "border-soot bg-fluoro/10"
+              : "border-soot/25 hover:border-soot/60"
           }`}
         >
           {/* Header row — always visible */}
@@ -129,17 +131,21 @@ const WorkExAccordian = () => {
             onClick={() => toggleAccordion(index)}
             className="cursor-pointer flex flex-col gap-[5px] sm:flex-row justify-between items-start "
           >
-            <h3 className="text-xl font-bold">{experience.title}</h3>
+            <h3 className="font-display text-xl font-bold uppercase leading-tight">
+              {experience.title}
+            </h3>
 
             <div className="flex items-center gap-3 self-end">
-              <p className="text-gray-500 text-nowrap">{experience.duration}</p>
+              <p className="font-marks text-xs uppercase tracking-widest text-soot/60 text-nowrap">
+                {experience.duration}
+              </p>
               {/* Chevron */}
             </div>
           </div>
 
           {/* Pulsing dot for current role */}
           {experience.present && (
-            <div className="bg-red font-semibold w-[20px] h-[20px] absolute top-0 right-0 animate-pulse" />
+            <div className="bg-fluoro w-[16px] h-[16px] rounded-full absolute top-0 right-0 translate-x-[8px] -translate-y-[8px] animate-pulse" />
           )}
 
           {/* 
@@ -150,10 +156,10 @@ const WorkExAccordian = () => {
             ref={(el) => (panelRefs.current[index] = el)}
             style={{ overflow: "hidden", height: 0, opacity: 0 }}
           >
-            <div className="border-t border-solid border-blackish/40">
-              <ul className="list-disc ml-[20px] mt-4">
+            <div className="border-t-2 border-solid border-soot/25">
+              <ul className="list-disc marker:text-fluoro ml-[20px] mt-4">
                 {experience.points.map((point, i) => (
-                  <li key={i} className="text-gray-700">
+                  <li key={i} className="text-soot/85">
                     {point}
                   </li>
                 ))}

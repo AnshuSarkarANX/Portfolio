@@ -1,12 +1,16 @@
 const WorkEx = ({ title, duration, points, className = "" }) => {
   return (
     <div className={`flex h-fit w-fit ${className} `}>
-      <div className="h-fit w-fit ">
-        <h1 className="text-xl md:text-2xl font-semibold">{title}</h1>
-        <p className="font-medium text-lg opacity-90">{duration}</p>
-        <ul className="lg:mx-[10vmin]  pl-[15px] lg:pl-0 list-disc space-y-2">
+      <div className="h-fit w-fit">
+        <h3 className="font-display text-xl md:text-2xl font-bold uppercase leading-tight">
+          {title}
+        </h3>
+        <p className="mt-1 font-marks text-xs uppercase tracking-widest text-fluoro">
+          {duration}
+        </p>
+        <ul className="lg:mx-[10vmin] mt-4 pl-[15px] lg:pl-0 list-disc space-y-2 marker:text-fluoro">
           {points.map((point, index) => (
-            <li key={index} className="opacity-85">
+            <li key={index} className="text-soot/85">
               {point}
             </li>
           ))}

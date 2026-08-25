@@ -1,44 +1,183 @@
 @import "tailwindcss";
 
 @theme {
-  --color-blackish: #222121;
-  --color-backGround: #d9d9d9;
-  --color-secondary: #5e5e5e;
-  --color-red: #ba1a1a;
+  /* Riso ink set */
+  --color-paper: #f5f0e6;
+  --color-fluoro: #ff48b0;
+  --color-risoblue: #0078bf;
+  --color-soot: #1d1b16;
+  --color-tile-ink: rgba(29, 27, 22, 0.05);
 
-  --font-header: var(--font-playfair-display), serif;
+  --font-display: var(--font-bricolage), sans-serif;
   --font-body: var(--font-hanken-grotesk), sans-serif;
-  --font-jetbrains: var(--font-jetbrains-mono), monospace;
+  --font-marks: var(--font-jetbrains-mono), monospace;
 }
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 
   body {
     font-family: var(--font-body);
     line-height: 1.5;
-    color: #222121;
-    background-color: #d9d9d9;
+    color: var(--color-soot);
+    background-color: var(--color-paper);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  ::selection {
+    background-color: var(--color-fluoro);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-soot);
+    outline-offset: 3px;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
 }
 
 @layer components {
-  .main-container {
-    @apply min-h-screen px-4 md:px-8 lg:px-16;
+  .mainSection {
+    max-width: max(1280px, 90vw);
+    margin: 0 auto;
+    padding: 2rem;
   }
 
-  .name {
-    @apply font-header font-bold text-left drop-shadow-xs text-[70px] leading-[70px] sm:text-[115px] sm:leading-[115px] md:text-[135px] md:leading-[135px];
+  @media (max-width: 820px) {
+    .mainSection {
+      padding: 1rem;
+    }
   }
 
-  /* v3 note: `.role` used @apply name — cross-class apply is gone in v4, duplicated here */
-  .role {
-    @apply font-header font-bold text-left drop-shadow-xs text-secondary text-[70px] leading-[70px] sm:text-[115px] sm:leading-[115px] md:text-[135px] md:leading-[135px];
+  /* Shifting tile ground — two counter-drifting checker passes.
+     Layers are oversized so scrub translation never exposes an edge. */
+  .tile-field {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .tile-layer {
+    position: absolute;
+    inset: -60%;
+    will-change: transform;
+    background-image: conic-gradient(
+      var(--color-tile-ink) 25%,
+      transparent 0 50%,
+      var(--color-tile-ink) 0 75%,
+      transparent 0
+    );
+  }
+
+  .tile-layer--a {
+    background-size: 72px 72px;
+  }
+
+  .tile-layer--b {
+    background-size: 118px 118px;
+    opacity: 0.55;
+  }
+
+  /* Paper grain — fixed overlay, multiply keeps it in the ink world */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 0.28;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+
+  /* Stamped controls — flat blocks that press into the sheet */
+  .stamp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 2px solid var(--color-soot);
+    padding: 0.65rem 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition:
+      transform 150ms ease-out,
+      background-color 150ms ease-out,
+      color 150ms ease-out;
+  }
+
+  .stamp-btn:hover {
+    transform: translate(-1px, -1px);
+    background-color: var(--color-fluoro);
+  }
+
+  .stamp-btn--blue:hover {
+    background-color: var(--color-risoblue);
+    color: var(--color-paper);
+  }
+
+  .stamp-btn:active {
+    transform: translate(1px, 1px);
+  }
+
+  .stamp-btn--ink {
+    background-color: var(--color-fluoro);
+    color: var(--color-soot);
+  }
+
+  .stamp-btn--ink:hover {
+    background-color: var(--color-risoblue);
+    color: var(--color-paper);
+  }
+
+  /* Riso photo treatment — currently unused; screenshots render via
+     ImageContainer verbatim by user decision. Kept for future passes. */
+  .riso-media {
+    isolation: isolate;
+    background-color: var(--color-paper);
+  }
+
+  .riso-media img {
+    filter: grayscale(1) contrast(1.12) brightness(1.04);
+    mix-blend-mode: multiply;
+  }
+
+  /* Work-order ribbon */
+  .ribbon-track {
+    display: flex;
+    width: max-content;
+    animation: ribbon-scroll 28s linear infinite;
+  }
+
+  @keyframes ribbon-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ribbon-track {
+      animation: none;
+    }
+
+    .stamp-btn,
+    .stamp-btn:hover {
+      transform: none;
+      transition: none;
+    }
   }
 }

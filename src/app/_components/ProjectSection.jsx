@@ -24,9 +24,9 @@ const ProjectsArray = [
 const ProjectSection = () => {
   return (
     <div className="projectSection ">
-      <Heading no={1} text={"Projects"} buttonText="View All" buttonLink="/projects" />
+      <Heading text={"Projects"} buttonText="View All" buttonLink="/projects" />
       <div className="flex flex-col gap-[20px]">
-        {ProjectsArray.map((project) => (
+        {ProjectsArray.map((project, i) => (
           <ProjectCard
             key={project.name}
             name={project.name}
@@ -37,6 +37,7 @@ const ProjectSection = () => {
             demoVideo={project.demoVideo} 
             hasDemo={project.hasDemo}
             images={project.images}
+            edition={`Ed.${String(i + 1).padStart(2, "0")}`}
           />
         ))}
       </div>

@@ -14,7 +14,6 @@ import WorkExAccordian from "./_components/WorkExAccordian";
 import HeroSection from "./_components/HeroSection";
 import WorkEx from "./_components/WorkEx";
 import useIsMobile from "./_components/useIsMobile";
-import "./_components/navbar.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
@@ -51,6 +50,22 @@ export default function Home() {
     () => {
       const section = sectionRef.current;
       const track = trackRef.current;
+
+      // Ink-pass reveal: each block prints itself in as it enters
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.utils.toArray("[data-ink]").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { clipPath: "inset(0 100% 0 0)" },
+            {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 82%" },
+            },
+          );
+        });
+      }
 
       const smooth = ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
@@ -91,8 +106,7 @@ export default function Home() {
   return (
     <div className="" ref={bodyRef} id="smooth-wrapper">
       <div
-        className="bg-[linear-gradient(to_right,#5e5e5e1a_2px,transparent_1px),linear-gradient(to_bottom,#5e5e5e1a_2px,transparent_1px)]
-    bg-[size:40px_40px] "
+        className=""
         id="smooth-content"
       >
         <HeroSection handleResumeDownload={handleResumeDownload} />
@@ -101,12 +115,12 @@ export default function Home() {
           {/* About Section Content */}
         </div>
 
-        <div ref={projectRef} className="section px-[20px] sm:px-[50px]">
+        <div ref={projectRef} className="section px-[20px] sm:px-[50px]" data-ink>
           <ProjectSection />
         </div>
 
-        <div ref={sectionRef} className="section px-[20px] sm:px-[50px] ">
-          <Heading text={"Experience"} no={2} />
+        <div ref={sectionRef} className="section px-[20px] sm:px-[50px] " data-ink>
+          <Heading text={"Experience"} />
           {isMobile ? (
             <WorkExAccordian />
           ) : (
@@ -163,7 +177,7 @@ export default function Home() {
           )}
         </div>
 
-        <div ref={contactRef} className="section">
+        <div ref={contactRef} className="section" data-ink>
           <Contacts />
         </div>
       </div>

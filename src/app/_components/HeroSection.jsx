@@ -6,122 +6,173 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
-// The two phrases to cycle between
-const PHRASES = ["Frontend\nDeveloper", "Full Stack\nDeveloper"];
+const RIBBON_ITEMS = [
+  "FRONTEND ENGINEER",
+  "FULL STACK",
+  "GENAI",
+  "REACT.JS",
+  "NODE.JS",
+  "SSE",
+  "PRISMA",
+  "ELASTICSEARCH",
+  "DOCKER",
+  "GSAP",
+  "TAILWIND",
+];
+
+function RegistrationMark({ className }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      className={`absolute h-6 w-6 text-soot/60 ${className}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    >
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="0" x2="12" y2="24" />
+      <line x1="0" y1="12" x2="24" y2="12" />
+    </svg>
+  );
+}
 
 export default function HeroSection({ handleResumeDownload }) {
-  const sectionRef = useRef(null); // scope ref — all GSAP selectors are scoped to this
-  const roleRef = useRef(null); // the <p class="role"> element
+  const sectionRef = useRef(null);
+  const driftRef = useRef(null);
+  const pinkRefs = useRef([]);
+  const blueRefs = useRef([]);
 
   useGSAP(
     () => {
-      const el = roleRef.current;
-      let phraseIndex = 0;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
 
-      // Split the text into individual characters so we can animate each one
-      const buildChars = (text) => {
-        el.innerHTML = text
-          .split("")
-          .map((char) =>
-            char === "\n"
-              ? "<br/>"
-              : `<span class="char" style="display:inline-block; opacity:0">${char}</span>`,
-          )
-          .join("");
-        return el.querySelectorAll(".char");
-      };
-
-      const animateIn = (chars) =>
-        gsap.fromTo(
-          chars,
-          { opacity: 0, y: 12 }, // start: invisible, slightly below
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.04, // each character takes 0.04s
-            stagger: 0.04, // each char starts 0.04s after the previous
-            ease: "none",
-          },
-        );
-
-      const animateOut = (chars) =>
-        gsap.to(chars, {
-          opacity: 0,
-          y: -10,
-          duration: 0.02,
-          stagger: 0.02,
-          ease: "power1.in",
+      // Idle press-drift: each pass of each word never quite sits still
+      ["Anshu", "Sarkar"].forEach((_, i) => {
+        gsap.to(pinkRefs.current[i], {
+          x: 7,
+          y: 5,
+          duration: 2.4,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
         });
-
-      // Build and run the cycling loop
-      const cycle = () => {
-        const chars = buildChars(PHRASES[phraseIndex]);
-        const inAnim = animateIn(chars);
-
-        // After 2.5s visible, fade out then switch phrase
-        inAnim.eventCallback("onComplete", () => {
-          gsap.delayedCall(2.5, () => {
-            const outAnim = animateOut(chars);
-            outAnim.eventCallback("onComplete", () => {
-              phraseIndex = (phraseIndex + 1) % PHRASES.length;
-              cycle(); // loop forever
-            });
-          });
+        gsap.to(blueRefs.current[i], {
+          x: -7,
+          y: -5,
+          duration: 2.4,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 1.2,
         });
-      };
+      });
 
-      cycle();
+      // The whole sheet follows the pointer like paper sliding on a platen
+      const driftX = gsap.quickTo(driftRef.current, "x", {
+        duration: 0.9,
+        ease: "power3.out",
+      });
+      const driftY = gsap.quickTo(driftRef.current, "y", {
+        duration: 0.9,
+        ease: "power3.out",
+      });
+      const onMove = (e) => {
+        const nx = e.clientX / window.innerWidth - 0.5;
+        const ny = e.clientY / window.innerHeight - 0.5;
+        driftX(nx * 26);
+        driftY(ny * 18);
+      };
+      window.addEventListener("pointermove", onMove);
+      return () => window.removeEventListener("pointermove", onMove);
     },
     { scope: sectionRef },
-  ); 
+  );
+
+  const inkLine = (word, i) => (
+    <span className="relative block">
+      <span className="invisible block" aria-hidden>
+        {word}
+      </span>
+      <span
+        ref={(el) => (blueRefs.current[i] = el)}
+        aria-hidden
+        className="absolute inset-0 select-none text-risoblue mix-blend-multiply"
+      >
+        {word}
+      </span>
+      <span
+        ref={(el) => (pinkRefs.current[i] = el)}
+        aria-hidden
+        className="absolute inset-0 select-none text-fluoro mix-blend-multiply"
+      >
+        {word}
+      </span>
+      <span className="sr-only">{word}</span>
+    </span>
+  );
 
   return (
-    <div
+    <section
       ref={sectionRef}
-      className="mainSection text-center h-screen pb-[50px] sm:pb-[100px]"
+      className="mainSection relative flex h-screen flex-col justify-center overflow-hidden pb-[70px]"
     >
-      <div className="grid lg:grid-cols-10 h-full bg-[url('/assets/abstract_element.svg')] bg-fit bg-[position:30%_center] bg-no-repeat">
-        <div className="sm:col-span-6 flex flex-col justify-between">
-          <div className="bg-backGround text-secondary/50 border-solid border border-secondary/30 w-fit px-[10px]">
-            SYS.INIT // 2024
-          </div>
-          <div className="w-fit">
-            <p className="name">
-              ANSHU <br />
-              SARKAR
-            </p>
-            <p className="font-jetbrains text-[12px] sm:text-[16px] opacity-70 text-center">
-              ENGINEERING DIGITAL INTERFACES
-            </p>
+      <RegistrationMark className="left-[8px] top-[8px] sm:left-[20px] sm:top-[16px]" />
+      <RegistrationMark className="right-[8px] top-[8px] sm:right-[20px] sm:top-[16px]" />
 
-            {/*  ref attached here, GSAP rewrites innerHTML directly */}
-            <p ref={roleRef} className="role text-nowrap" />
-          </div>
-        </div>
+      <div ref={driftRef} className="w-fit">
+        <h1 className="text-left font-display font-extrabold uppercase leading-[0.88] tracking-[-0.03em] text-[clamp(4.2rem,15vw,12rem)]">
+          {inkLine("Anshu", 0)}
+          {inkLine("Sarkar", 1)}
+        </h1>
 
-        <div className="sm:col-span-4 flex items-end">
-          <div className="border-l border-solid border-black font-jetbrains px-[20px]">
-            <p className="opacity-70 text-left mb-[20px] text-[12px] sm:text-[16px]">
-              Software Engineer with experience building scalable web
-              applications, real-time systems, and workflow-driven platforms
-              using React. Worked on backend integrations, APIs, and data
-              pipelines, with a growing focus on full-stack development and
-              GenAI integration.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-[25px]">
-              <button className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit">
-                INITIATE_CONTACT()
-              </button>
-              <button
-                onClick={handleResumeDownload}
-                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
-              >
-                DL_RESUME.PDF
-              </button>
-            </div>
-          </div>
+        <p className="mt-6 max-w-[46ch] font-display text-lg font-semibold uppercase sm:text-xl">
+          Engineering digital interfaces —{" "}
+          <span className="text-risoblue">frontend</span>,{" "}
+          <span className="text-fluoro">full stack</span> & GenAI products
+        </p>
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
+          <a href="mailto:anshusarkaranx@gmail.com" className="stamp-btn">
+            Start a project
+          </a>
+          <button
+            onClick={handleResumeDownload}
+            className="stamp-btn stamp-btn--ink"
+          >
+            Download resume
+          </button>
         </div>
       </div>
-    </div>
+
+      {/* Edition stamp */}
+      <div className="pointer-events-none absolute bottom-[92px] right-[10px] hidden rotate-3 border-2 border-soot px-3 py-2 font-marks text-[11px] uppercase leading-tight sm:block">
+        Ed. 2026 — first print
+        <br />
+        two inks on uncoated paper
+      </div>
+
+      {/* Work-order ribbon */}
+      <div className="absolute inset-x-0 bottom-0 overflow-hidden border-y-2 border-soot bg-paper py-2">
+        <div className="ribbon-track">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              aria-hidden={copy === 1}
+              className="flex shrink-0 items-center gap-8 pr-8 font-marks text-xs uppercase tracking-widest"
+            >
+              {RIBBON_ITEMS.map((item) => (
+                <span key={item} className="flex items-center gap-8">
+                  {item}
+                  <span className="text-fluoro">·</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

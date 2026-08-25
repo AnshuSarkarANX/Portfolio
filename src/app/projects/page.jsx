@@ -7,11 +7,7 @@ const ProjectsArray = [
     shortDescription: "AI-Powered Interview Assessment Platform",
     stack: ["React.js", "Node.js", "SSE"],
     link: "https://skilltestai.vercel.app/",
-    images: [
-      "/assets/projectImages/skilltestimage1.png",
-      "/assets/projectImages/skilltestimage2.png",
-      "/assets/projectImages/skilltestimage3.png",
-    ],
+    images: ["/assets/projectImages/skilltestimage1.png"],
     description:
       "AI-powered interview and assessment platform that evaluates skills, matches resumes with job descriptions, and conducts personalized voice-based interviews.",
     demoVideo:
@@ -26,7 +22,7 @@ const ProjectsArray = [
     link: "https://newsearche.vercel.app/",
     images: ["/assets/projectImages/TechPulseImage.png"],
     description:
-      "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria. ",
+      "A search engine that crawls and indexes the latest news from various sources.The backend queries the indexed data that allows users to search for news articles based on keywords, relevance, and other criteria.",
     demoVideo: "",
     hasDemo: false,
   },
@@ -64,18 +60,21 @@ export const metadata = {
 const ProjectsPage = () => {
   return (
     <main className="mainSection px-[20px] sm:px-[50px] py-[50px]">
-      <h1 className="name mb-[50px]">PROJECTS</h1>
-      <div className="flex flex-col gap-[50px]">
-        {ProjectsArray.map((project) => (
+      <h1 className="font-display text-5xl sm:text-7xl font-extrabold uppercase leading-none tracking-tight mb-[50px]">
+        Editions<span className="text-fluoro">.</span>
+      </h1>
+      <div className="flex flex-col gap-[60px]">
+        {ProjectsArray.map((project, i) => (
           <ProjectCard
             key={project.name}
             {...project}
             tag={project.shortDescription}
+            edition={`Ed.${String(i + 1).padStart(2, "0")}`}
           />
         ))}
       </div>
-      <Link href="/" className="font-jetbrains inline-block mt-[50px] underline">
-        ← BACK_HOME
+      <Link href="/" className="stamp-btn mt-[50px] text-sm">
+        ← Back to the sheet
       </Link>
     </main>
   );

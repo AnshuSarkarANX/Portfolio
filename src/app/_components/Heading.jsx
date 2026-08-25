@@ -1,28 +1,16 @@
 import Link from "next/link";
 
-const Heading = ({ no, text, buttonText = "", buttonLink = "" }) => {
-  const formatNumber = (num) => {
-    if (num < 10) {
-      return `0${num}`;
-    }
-    return num;
-  };
-
+const Heading = ({ text, buttonText = "", buttonLink = "" }) => {
   return (
-    <div className="flex gap-[15px] items-center justify-between pb-[25px] mb-[50px]  border-b border-solid border-blackish/40">
-      <div className="flex gap-[15px] items-center flex-1">
-        <div className="bg-blackish text-white text-[14px] sm:text-[16px] lg:text-[20px] py-[5px] px-[10px] font-jetbrains">
-          {formatNumber(no)}
-        </div>
-        <p className="font-header font-semibold text-[24px] md:text-[32px] lg:text-[40px]">
-          {text}
-        </p>
-      </div>
+    <div className="flex items-end justify-between gap-[15px] pb-[18px] mb-[50px] border-b-[3px] border-solid border-soot">
+      <h2 className="font-display text-3xl font-bold uppercase leading-none tracking-tight sm:text-4xl md:text-5xl">
+        {text}
+      </h2>
       <div>
         {buttonText.length > 0 && (
           <Link
             href={buttonLink}
-            className="bg-blackish text-white border-solid border border-white/50 px-[10px] sm:px-[16px] py-[5px] sm:py-[5px] w-full sm:w-fit self-end text-[20px]"
+            className="stamp-btn px-[12px] py-[6px] text-xs sm:text-sm"
           >
             {buttonText}
           </Link>
