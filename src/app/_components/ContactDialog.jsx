@@ -41,7 +41,7 @@ export default function ContactDialog({ open, onClose }) {
       await emailjs.send(
         process.env.NEXT_PUBLIC_EJS_SERVICE_KEY ?? "",
         process.env.NEXT_PUBLIC_EJS_TEMPLATE_KEY ?? "",
-        { from_name: name, from_email: email, topic },
+        { name: name, email: email, message: topic },
       );
       setSavedName(name);
       setSent(true);
