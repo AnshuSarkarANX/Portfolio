@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
-const STORAGE_KEY = "contact-submissions";
+emailjs.init(process.env.NEXT_PUBLIC_EJS_PUBLIC_KEY ?? "");
 
 export default function ContactDialog({ open, onClose }) {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [savedName, setSavedName] = useState("");
   const nameRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
     setSent(false);
+    setError("");
     const onKey = (e) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", onKey);
     const t = setTimeout(() => nameRef.current?.focus(), 30);
@@ -23,26 +27,29 @@ export default function ContactDialog({ open, onClose }) {
 
   if (!open) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSending(true);
+    setError("");
+
     const data = new FormData(e.currentTarget);
-    const entry = {
-      name: String(data.get("name") || "").trim(),
-      email: String(data.get("email") || "").trim(),
-      topic: String(data.get("topic") || "").trim(),
-      submittedAt: new Date().toISOString(),
-    };
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const topic = String(data.get("topic") || "").trim();
+
     try {
-      const prev = JSON.parse(
-        window.localStorage.getItem(STORAGE_KEY) ?? "[]",
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EJS_SERVICE_KEY ?? "",
+        process.env.NEXT_PUBLIC_EJS_TEMPLATE_KEY ?? "",
+        { from_name: name, from_email: email, topic },
       );
-      prev.push(entry);
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
+      setSavedName(name);
+      setSent(true);
     } catch {
-      // storage unavailable — still acknowledge, never block
+      setError("ERROR: send failed. Try again.");
+    } finally {
+      setSending(false);
     }
-    setSavedName(entry.name);
-    setSent(true);
   };
 
   return (
@@ -84,6 +91,11 @@ export default function ContactDialog({ open, onClose }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            {error && (
+              <p className="border border-solid border-blackish bg-backGround px-3 py-2 font-jetbrains text-xs uppercase text-secondary">
+                {error}
+              </p>
+            )}
             <div>
               <label
                 htmlFor="cf-name"
@@ -140,9 +152,10 @@ export default function ContactDialog({ open, onClose }) {
               </span>
               <button
                 type="submit"
-                className="flex-1 border border-solid border-blackish bg-blackish px-[10px] py-[10px] font-jetbrains text-sm uppercase text-white hover:opacity-90"
+                disabled={sending}
+                className="flex-1 border border-solid border-blackish bg-blackish px-[10px] py-[10px] font-jetbrains text-sm uppercase text-white hover:opacity-90 disabled:opacity-50"
               >
-                SUBMIT_FORM()
+                {sending ? "SENDING..." : "SUBMIT_FORM()"}
               </button>
             </div>
           </form>
