@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 
+# env files
+.env
+
 # next.js
 /.next/
 /out/
