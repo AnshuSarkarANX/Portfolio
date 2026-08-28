@@ -113,13 +113,13 @@ export default function HeroSection({ handleResumeDownload }) {
             <div className="flex flex-col sm:flex-row gap-[25px]">
               <button
                 onClick={() => setContactOpen(true)}
-                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
+                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[15px] sm:px-[20px] w-full sm:w-fit"
               >
                 INITIATE_CONTACT()
               </button>
               <button
                 onClick={handleResumeDownload}
-                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[2px] w-full sm:w-fit"
+                className="bg-backGround hover:bg-blackish hover:text-white text-secondary border-solid border border-secondary/50 px-[10px] py-[10px] sm:py-[15px] sm:px-[20px] w-full sm:w-fit"
               >
                 DL_RESUME.PDF
               </button>

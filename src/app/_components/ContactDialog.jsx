@@ -13,15 +13,24 @@ export default function ContactDialog({ open, onClose }) {
   const nameRef = useRef(null);
 
   useEffect(() => {
-    if (!open) return;
-    setSent(false);
-    setError("");
-    const onKey = (e) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    const t = setTimeout(() => nameRef.current?.focus(), 30);
+    let t,
+      onKey = "";
+    let originalOverflow = document.body.style.overflow;
+    if (open) {
+      setSent(false);
+      setError("");
+      document.body.style.overflow = "hidden";
+      onKey = (e) => e.key === "Escape" && onClose();
+      document.addEventListener("keydown", onKey);
+      t = setTimeout(() => nameRef.current?.focus(), 30);
+    } else {
+      return;
+    }
+
     return () => {
       document.removeEventListener("keydown", onKey);
       clearTimeout(t);
+      document.body.style.overflow = originalOverflow;
     };
   }, [open, onClose]);
 
@@ -57,7 +66,7 @@ export default function ContactDialog({ open, onClose }) {
       role="dialog"
       aria-modal="true"
       aria-label="Initiate contact"
-      className="fixed inset-0 z-[70] grid place-items-center bg-blackish/60 p-4"
+      className="fixed inset-0 z-[70] grid place-items-center bg-blackish/60 p-4 h-screen overflow-hidden"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="w-full max-w-md border border-solid border-blackish bg-backGround p-6 sm:p-8">
@@ -76,7 +85,7 @@ export default function ContactDialog({ open, onClose }) {
 
         {sent ? (
           <div>
-            <p className="font-jetbrains text-base font-bold uppercase">
+            <p className="font-jetbrains text-base font-bold uppercase text-green-400">
               MESSAGE_SENT{savedName ? `: ${savedName}` : "()"}
             </p>
             <p className="mt-3 text-secondary">
@@ -92,7 +101,7 @@ export default function ContactDialog({ open, onClose }) {
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {error && (
-              <p className="border border-solid border-blackish bg-backGround px-3 py-2 font-jetbrains text-xs uppercase text-secondary">
+              <p className="border border-solid border-red-400 bg-backGround px-3 py-2 font-jetbrains text-xs uppercase text-red-400">
                 {error}
               </p>
             )}
@@ -109,7 +118,7 @@ export default function ContactDialog({ open, onClose }) {
                 name="name"
                 required
                 autoComplete="name"
-                className="w-full border border-solid border-blackish bg-backGround px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
+                className="w-full border border-solid border-blackish  px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
               />
             </div>
             <div>
@@ -125,7 +134,7 @@ export default function ContactDialog({ open, onClose }) {
                 type="email"
                 required
                 autoComplete="email"
-                className="w-full border border-solid border-blackish bg-backGround px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
+                className="w-full border border-solid border-blackish  px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
               />
             </div>
             <div>
@@ -140,7 +149,7 @@ export default function ContactDialog({ open, onClose }) {
                 name="topic"
                 required
                 rows={4}
-                className="w-full resize-y border border-solid border-blackish bg-backGround px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
+                className="w-full resize-y border border-solid border-blackish  px-3 py-2 font-jetbrains text-sm focus:border-blackish focus:outline-none"
               />
             </div>
             <div className="mt-1 flex items-center justify-between gap-4">
