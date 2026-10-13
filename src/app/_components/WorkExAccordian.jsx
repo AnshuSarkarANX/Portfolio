@@ -5,52 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
-    const experiences = [
-      {
-        title: "Frontend Developer Intern - WEBAXD",
-        duration: "Jun - Aug, 2024",
-        points: [
-          "Developed a Javascript algorithm to improve the loading speed by 90%",
-          "Designed and implemented new features for better user experience",
-          "Successfully delivered multiple projects",
-        ],
-      },
-      {
-        title: "Frontend Developer Intern  - Pearl Thoughts",
-        duration: "Oct - Nov, 2024",
-        points: [
-          "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
-          "Implemented full CRUD functionality for appointments using REST APIs.",
-          "Enhanced user experience with a responsive and seamless interface.",
-        ],
-      },
-      {
-        title: "Frontend Developer - cvDragon",
-        duration: "Dec, 2024 - Jan, 2026",
-        className: "lg:w-[min(75vw,1200px)]",
-        points: [
-          "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
-          "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
-          "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
-          "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
-          "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools",
-        ],
-      },
-
-      {
-        title: "Software Development Engineer - PepHub Consultancy",
-        duration: "Feb - Sep, 2026",
-        className: "lg:w-[80vw]",
-        present: false,
-        points: [
-          "Developed a community-driven platform that enables users to create groups, organize events, manage participation, and coordinate activities through a centralized workflow",
-          "Developed scalable REST APIs, JWT-based authentication, database models using Prisma ORM, and business workflows supporting e-commerce operations and customer account management",
-
-          "Implemented performance optimizations, including virtualization and reusable UI patterns, to improve rendering efficiency and user experience when handling large datasets",
-        ],
-      },
-    ];
-const WorkExAccordian = () => {
+const WorkExAccordian = ({ experiences }) => {
 
   const [openIndex, setOpenIndex] = useState(experiences.length - 1);
 
@@ -119,7 +74,7 @@ const WorkExAccordian = () => {
     <div className="flex flex-col w-full gap-[20px] mb-[50px]">
       {experiences.map((experience, index) => (
         <div
-          key={index}
+          key={experience.id}
           className={`border-solid border border-secondary/50 p-[20px] sm:py-[40px] shadow-md relative transition-colors duration-300 ease-in-out hover:shadow-lg ${
             openIndex === index ? "bg-gray-100/20" : ""
           }`}
@@ -138,7 +93,7 @@ const WorkExAccordian = () => {
           </div>
 
           {/* Pulsing dot for current role */}
-          {experience.present && (
+          {experience.present === true && (
             <div className="bg-red font-semibold w-[20px] h-[20px] absolute top-0 right-0 animate-pulse" />
           )}
 
@@ -152,8 +107,8 @@ const WorkExAccordian = () => {
           >
             <div className="border-t border-solid border-blackish/40">
               <ul className="list-disc ml-[20px] mt-4">
-                {experience.points.map((point, i) => (
-                  <li key={i} className="text-gray-700">
+                {experience.points.map((point) => (
+                  <li key={point} className="text-gray-700">
                     {point}
                   </li>
                 ))}

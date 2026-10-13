@@ -14,6 +14,7 @@ import WorkExAccordian from "./_components/WorkExAccordian";
 import HeroSection from "./_components/HeroSection";
 import WorkEx from "./_components/WorkEx";
 import useIsMobile from "./_components/useIsMobile";
+import { experiences, experienceColumns } from "./_components/experienceData";
 import "./_components/navbar.css";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
@@ -108,56 +109,37 @@ export default function Home() {
         <div ref={sectionRef} className="section px-[20px] sm:px-[50px] ">
           <Heading text={"Experience"} no={2} />
           {isMobile ? (
-            <WorkExAccordian />
+            <WorkExAccordian experiences={experiences} />
           ) : (
             <div className="overflow-hidden ">
               <div
                 ref={trackRef}
                 className="flex lg:flex-row flex-col gap-[100px] w-max lg:px-[50px] "
               >
-                <div className="w-fit">
-                  <WorkEx
-                    title="Frontend Developer Intern  - Pearl Thoughts"
-                    duration="Oct - Nov, 2024"
-                    points={[
-                      "Built a Doctor’s Appointment Booking app with an intuitive, user-friendly UI.",
-                      "Implemented full CRUD functionality for appointments using REST APIs.",
-                      "Enhanced user experience with a responsive and seamless interface.",
-                    ]}
-                  />
-                  <WorkEx
-                    title="Frontend Developer Intern - WEBAXD"
-                    duration="Jun - Aug, 2024"
-                    points={[
-                      "Developed a Javascript algorithm to improve the loading speed by 90%",
-                      "Designed and implemented new features for better user experience",
-                      "Successfully delivered multiple projects",
-                    ]}
-                  />
-                </div>
-                <WorkEx
-                  title="Frontend Developer - cvDragon"
-                  duration="Dec,2024 - Jan, 2026"
-                  className="lg:w-[min(75vw,1200px)]"
-                  points={[
-                    "Built an event management system with dynamic forms, supporting multi-user registration, payment gateway integration, and automated ticket generation",
-                    "Developed a centralised task system replacing manual email workflows, enabling instant CSV report generation and reducing processing time from months to seconds",
-                    "Built a multi-role Upasak system handling allocation across 400+ Sabhas through admin-controlled workflows",
-                    "Developed a bulk messaging feature to send targeted messages to up to 2000 users with push notifications using OneSignal",
-                    "Worked on a hotel management system including inventory interfaces and CSV-based data migration tools",
-                  ]}
-                />
-                <WorkEx
-                  title="Software Development Engineer - PepHub Consultancy"
-                  duration="Feb - Sep, 2026"
-                  className="lg:w-[80vw]"
-                  points={[
-                    "Developed a community-driven platform that enables users to create groups, organize events, manage participation, and coordinate activities through a centralized workflow",
-                    "Developed scalable REST APIs, JWT-based authentication, database models using Prisma ORM, and business workflows supporting e-commerce operations and customer account management",
-
-                    "Implemented performance optimizations, including virtualization and reusable UI patterns, to improve rendering efficiency and user experience when handling large datasets",
-                  ]}
-                />
+                {Object.values(experienceColumns).map((column) =>
+                  // Grouped entries share a column wrapper; ungrouped cards stay
+                  // direct flex children so their own width class still applies.
+                  column[0].group ? (
+                    <div key={column[0].id} className="w-fit">
+                      {column.map((experience) => (
+                        <WorkEx
+                          key={experience.id}
+                          title={experience.title}
+                          duration={experience.duration}
+                          points={experience.points}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <WorkEx
+                      key={column[0].id}
+                      title={column[0].title}
+                      duration={column[0].duration}
+                      points={column[0].points}
+                      className={column[0].className ?? ""}
+                    />
+                  )
+                )}
               </div>
             </div>
           )}
