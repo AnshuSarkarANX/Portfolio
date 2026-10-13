@@ -149,7 +149,7 @@ export default function Home() {
                 />
                 <WorkEx
                   title="Software Development Engineer - PepHub Consultancy"
-                  duration="Feb,2026 - Present"
+                  duration="Feb - Sep, 2026"
                   className="lg:w-[80vw]"
                   points={[
                     "Developed a community-driven platform that enables users to create groups, organize events, manage participation, and coordinate activities through a centralized workflow",

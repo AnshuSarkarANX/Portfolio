@@ -39,9 +39,9 @@ gsap.registerPlugin(useGSAP);
 
       {
         title: "Software Development Engineer - PepHub Consultancy",
-        duration: "Feb,2026 - Present",
+        duration: "Feb - Sep, 2026",
         className: "lg:w-[80vw]",
-        present: true,
+        present: false,
         points: [
           "Developed a community-driven platform that enables users to create groups, organize events, manage participation, and coordinate activities through a centralized workflow",
           "Developed scalable REST APIs, JWT-based authentication, database models using Prisma ORM, and business workflows supporting e-commerce operations and customer account management",
